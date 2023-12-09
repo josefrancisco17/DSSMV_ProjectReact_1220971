@@ -1,14 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import StartUpNavigator from './src/navigation/StartUpNavigator.js';
-import 'react-native-gesture-handler';
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <StartUpNavigator />
     </NavigationContainer>
   );
-}
+};
 
 export default App;

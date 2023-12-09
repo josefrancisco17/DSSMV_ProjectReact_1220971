@@ -1,23 +1,63 @@
-import * as React from 'react';
-import {Button, View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import {Button, Text, View} from 'react-native';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from '@react-navigation/drawer';
 
-function HomeScreen({navigation}) {
+const Drawer = createDrawerNavigator();
+
+const FeedScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>This is HomeScreen</Text>
+    <View style={styles.screen}>
+      <Text>Feed Screen</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
+const CheckOutScreen = () => {
+  return (
+    <View style={styles.screen}>
+      <Text>CheckOut Screen</Text>
+    </View>
+  );
+};
+
+const CheckInScreen = () => {
+  return (
+    <View style={styles.screen}>
+      <Text>CheckIn Screen</Text>
+    </View>
+  );
+};
+
+const ProfileScreen = () => {
+  return (
+    <View style={styles.screen}>
+      <Text>Profile Screen</Text>
+    </View>
+  );
+};
+
+const HomeScreen = ({navigation}) => {
+  return (
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Feed" component={FeedScreen} />
+      <Drawer.Screen name="CheckOut" component={CheckOutScreen} />
+      <Drawer.Screen name="CheckIn" component={CheckInScreen} />
+      <Drawer.Screen name="Profile" component={ProfileScreen} />
+    </Drawer.Navigator>
+  );
+};
+
+const styles = {
+  screen: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  text: {
-    color: 'black',
-  },
-});
+};
 
 export default HomeScreen;

@@ -1,28 +1,25 @@
-import * as React from 'react';
-import {Button, View, Text, StyleSheet, TextInput} from 'react-native';
+import React from 'react';
+import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
 
-function LoginScreen({navigation}) {
+const LoginScreen = ({navigation}) => {
+  const handleLogin = () => {
+    navigation.replace('Home');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Username</Text>
-      <TextInput
-        style={styles.text}
-        placeholder={'Enter your username'}
-        placeholderTextColor="black"
-      />
-      <Button title="Login" onPress={() => navigation.replace('HomeScreen')} />
+    <View style={styles.screen}>
+      <Text>Login Screen</Text>
+      <TextInput placeholder="Type here" />
+      <Button title="Login" onPress={handleLogin} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-  },
-  text: {
-    color: 'black',
+    alignItems: 'center',
   },
 });
 
