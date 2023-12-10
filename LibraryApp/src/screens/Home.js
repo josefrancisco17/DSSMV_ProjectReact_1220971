@@ -6,6 +6,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,10 +34,15 @@ const CheckInScreen = () => {
   );
 };
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
+  const logout = async () => {
+    await AsyncStorage.removeItem('userName');
+    navigation.navigate('Login');
+  };
   return (
     <View style={styles.screen}>
       <Text>Profile Screen</Text>
+      <Button onPress={logout} title="Logout" />
     </View>
   );
 };
