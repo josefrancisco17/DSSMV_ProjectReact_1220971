@@ -6,7 +6,7 @@ import AdminScreen from '../screens/Admin.js';
 
 const Stack = createStackNavigator();
 
-const StartUpNavigator = () => {
+const AuthNavigator = () => {
     return (
         <Stack.Navigator
             initialRouteName="Login"
@@ -18,4 +18,4 @@ const StartUpNavigator = () => {
     );
 };
 
-export default StartUpNavigator;
+export default AuthNavigator;
