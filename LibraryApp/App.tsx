@@ -4,11 +4,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import StartUpNavigator from './src/navigation/StartUpNavigator.js';
 
 const App = () => {
-  return (
-    <NavigationContainer>
-      <StartUpNavigator />
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <StartUpNavigator/>
+        </NavigationContainer>
+    );
 };
 
 export default App;
