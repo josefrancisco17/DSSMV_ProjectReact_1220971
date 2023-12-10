@@ -5,15 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const LoginScreen = ({navigation}) => {
   const [inputText, setInputText] = useState('');
 
-  const onSubmit = async () => {
-    if (inputText !== '') {
-      await AsyncStorage.setItem('userName', inputText);
-    } else {
-      await AsyncStorage.setItem('userName', 'Wonderful User');
-    }
-    navigation.replace('Home');
-  };
-
   useEffect(() => {
     checkLoggedIn();
   }, []);
@@ -25,6 +16,15 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
+  const onLogIn = async () => {
+    if (inputText !== '') {
+      await AsyncStorage.setItem('userName', inputText);
+    } else {
+      await AsyncStorage.setItem('userName', 'Wonderful User');
+    }
+    navigation.replace('Home');
+  };
+
   return (
     <View style={styles.screen}>
       <Text>Login Screen</Text>
@@ -33,7 +33,7 @@ const LoginScreen = ({navigation}) => {
         value={inputText}
         onChangeText={text => setInputText(text)}
       />
-      <Button title="Login" onPress={onSubmit} />
+      <Button title="Login" onPress={onLogIn} />
     </View>
   );
 };
