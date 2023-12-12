@@ -1,19 +1,17 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://193.136.62.24/v1/';
-
-export const get = (url) => {
-    return axios.get(`${BASE_URL}${url}`);
+export const get = async (url) => {
+    return await axios.get(url);
 };
 
-export const post = (url, data) => {
-    return axios.post(`${BASE_URL}${url}`, data);
+export const post = async (url, data) => {
+    return await axios.post(url, data);
 };
 
-export const put = (url, data) => {
-    return axios.put(`${BASE_URL}${url}`, data);
+export const put = async (url, data) => {
+    return await axios.put(url, data);
 };
 
-export const del = (url) => {
-    return axios.delete(`${BASE_URL}${url}`);
+export const del = async (url) => {
+    return await axios.delete(url);
 };

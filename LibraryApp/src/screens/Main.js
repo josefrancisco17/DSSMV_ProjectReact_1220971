@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
+import {ActivityIndicator, StyleSheet, View} from "react-native";
 import DrawerNavigator from "../navigation/DrawerNavigator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {View} from "react-native";
 
 const MainScreen = ({navigation}) => {
     const checkLogIn = async () => {
@@ -21,8 +21,16 @@ const MainScreen = ({navigation}) => {
     }, []);
 
     return (
-        <View></View>
+        <ActivityIndicator size="large" color="blue" style={styles.activityIndicator}/>
     );
 };
+
+const styles = StyleSheet.create({
+    activityIndicator: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    }
+})
 
 export default MainScreen;
