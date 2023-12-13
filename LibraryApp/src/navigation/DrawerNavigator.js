@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Button, Text, View} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList} from '@react-navigation/drawer';
 import FeedScreen from "../screens/Feed";
-import CheckOutScreen from '../screens/CheckOut.js'
+import CheckOutScreen from '../screens/LibrarySearch.js'
 import CheckInScreen from '../screens/CheckIn.js'
 import ProfileScreen from '../screens/Profile.js'
 import SettingsScreen from '../screens/Settings.js'
@@ -34,7 +34,7 @@ const CustomDrawerContent = (props) => {
     );
 };
 
-const DrawerNavigator = ({navigation}) => {
+const DrawerNavigator = () => {
     useEffect(() => {
         getUserName();
     }, []);
