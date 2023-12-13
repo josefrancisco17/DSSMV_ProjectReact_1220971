@@ -4,28 +4,28 @@ import {getLibraryBooksList} from "../service/RequestsService";
 import BookItem from '../components/BookItem.js';
 
 const BookSearchScreen = ({ navigation, route }) => {
-    const { library} = route.params;
+    const { library } = route.params;
     const [searchBook, setSearchBook] = useState('');
     const [booksList, setBooksList] = useState([]);
 
     useEffect(() => {
-        const fetchLibraryBooks = async () => {
+        const getLibraryBooksfromWs = async () => {
             try {
                 const books = await getLibraryBooksList(library.id);
                 setBooksList(books);
             } catch (error) {
-                console.error('Error fetching books list:', error);
+                console.error('Error getting books list:', error);
             }
         };
-        fetchLibraryBooks();
+        getLibraryBooksfromWs();
     }, []);
 
     const filteredBooksList = booksList.filter(
         (libraryBook) => libraryBook.book.title && libraryBook.book.title.toLowerCase().includes(searchBook.toLowerCase())
     )
 
-    const handleBookClick = (item) => {
-        navigation.navigate('Book')
+    const handleBookClick = (libraryBook) => {
+        navigation.navigate('Book', {libraryBook})
     }
 
     return (
