@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {TextInput, View, FlatList, Text} from 'react-native';
+import {TextInput, View, FlatList, Alert} from 'react-native';
 import {getLibrariesList} from '../service/RequestsService';
+import LibraryItem from '../components/LibraryItem';
 
 const CheckOutScreen = ({navigation}) => {
     const [searchLibrary, setSearchLibrary] = useState('');
@@ -19,20 +20,32 @@ const CheckOutScreen = ({navigation}) => {
     }, []);
 
     const filteredLibraries = librariesList.filter(
-        library => library.name.toLowerCase().includes(searchLibrary.toLowerCase())
-    )
-
-    const LibraryItem = ({item}) => (
-        <View>
-            <Text style={styles.libraryItem}>{`${item.name}`}</Text>
-        </View>
+        (library) => library.name.toLowerCase().includes(searchLibrary.toLowerCase())
     );
+
+    const handleLibraryClick = (item) => {
+        Alert.alert(
+            'Title',
+            'Message',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false}
+        );
+    };
+
+    const handleBookClick = (item) => {
+        Alert.alert(
+            'Title',
+            'Message',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false}
+        );
+    };
 
     return (
         <View style={styles.screen}>
             <TextInput
                 style={styles.search}
-                onChangeText={text => setSearchLibrary(text)}
+                onChangeText={(text) => setSearchLibrary(text)}
                 placeholder="Search"
                 placeholderTextColor="black"
                 autoCapitalize="none"
@@ -41,7 +54,7 @@ const CheckOutScreen = ({navigation}) => {
             <FlatList
                 style={styles.flatList}
                 data={filteredLibraries}
-                renderItem={LibraryItem}
+                renderItem={({item}) => <LibraryItem item={item} handleClick={handleLibraryClick}/>}
                 keyExtractor={(library) => library.id.toString()}
             />
         </View>
@@ -67,13 +80,6 @@ const styles = {
     flatList: {
         border: 2,
         borderWidth: 2,
-    },
-    libraryItem: {
-        color: 'black',
-        padding: 15,
-        marginBottom: 5,
-        backgroundColor: 'lightblue',
-        borderRadius: 10,
     },
 };
 
