@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from "react-native";
-import DrawerNavigator from "../navigation/DrawerNavigator";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const MainScreen = ({navigation}) => {
@@ -10,11 +9,11 @@ const MainScreen = ({navigation}) => {
             navigation.navigate('Login')
         }
         if (userName.toLowerCase().trim() === 'admin') {
-            navigation.navigate('Admin');
+            navigation.navigate('Admin')
         } else {
-            navigation.navigate('Home');
+            navigation.navigate('Home')
         }
-    };
+    }
 
     useEffect(() => {
         checkLogIn();
@@ -22,8 +21,8 @@ const MainScreen = ({navigation}) => {
 
     return (
         <ActivityIndicator size="large" color="blue" style={styles.activityIndicator}/>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     activityIndicator: {

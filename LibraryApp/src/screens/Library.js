@@ -1,14 +1,16 @@
 import React from 'react';
-import {TouchableOpacity, View, Text} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 const LibraryScreen = () => {
     return (
         <View>
             <Text>Library Screen</Text>
         </View>
-    );
-};
+    )
+}
 
-const styles = {};
+const styles = StyleSheet.create({
 
-export default LibraryScreen;
+})
+
+export default LibraryScreen

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {TextInput, View, FlatList, Alert} from 'react-native';
-import {getLibrariesList} from '../service/RequestsService';
+import React, { useState, useEffect } from 'react';
+import {TextInput, View, FlatList, Alert, TouchableOpacity, Text} from 'react-native';
+import { getLibrariesList, getBooksList } from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';
 
-const LibrarySearch = ({navigation}) => {
+const CheckOutScreen = ({ navigation }) => {
     const [searchLibrary, setSearchLibrary] = useState('');
     const [librariesList, setLibrariesList] = useState([]);
 
@@ -19,26 +19,14 @@ const LibrarySearch = ({navigation}) => {
         fetchLibraries();
     }, []);
 
-    const filteredLibraries = librariesList.filter(
-        (library) => library.name.toLowerCase().includes(searchLibrary.toLowerCase())
+    const filteredLibrariesList = librariesList.filter(
+        (library) =>
+            library.name &&
+            library.name.toLowerCase().includes(searchLibrary.toLowerCase())
     );
 
-    const handleLibraryClick = (item) => {
-        Alert.alert(
-            'Title',
-            'Message',
-            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-            {cancelable: false}
-        );
-    };
-
-    const handleBookClick = (item) => {
-        Alert.alert(
-            'Title',
-            'Message',
-            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
-            {cancelable: false}
-        );
+    const handleLibraryClick = async (library) => {
+        navigation.navigate('BookSearch', {library})
     };
 
     return (
@@ -54,29 +42,14 @@ const LibrarySearch = ({navigation}) => {
                 />
                 <FlatList
                     style={styles.flatList}
-                    data={filteredLibraries}
-                    renderItem={({item}) => <LibraryItem item={item} handleClick={handleLibraryClick}/>}
-                    keyExtractor={(library) => library.id.toString()}
-                />
-            </View>
-            <View style={styles.bookSearchContainer}>
-                <TextInput
-                    style={styles.search}
-                    onChangeText={(text) => setSearchLibrary(text)}
-                    placeholder="Search"
-                    placeholderTextColor="black"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <FlatList
-                    style={styles.flatList}
-                    data={filte}
-                    renderItem={({item}) => <LibraryItem item={item} handleClick={handleLibraryClick}/>}
+                    data={filteredLibrariesList}
+                    renderItem={({ item }) => (
+                        <LibraryItem library={item} handleClick={() => handleLibraryClick(item)} />
+                    )}
                     keyExtractor={(library) => library.id.toString()}
                 />
             </View>
         </View>
-
     );
 };
 
@@ -105,6 +78,12 @@ const styles = {
     flatList: {
         border: 2,
         borderWidth: 2,
+    },
+    bookItem: {
+        padding: 15,
+        marginBottom: 10,
+        backgroundColor: 'blue',
+        borderRadius: 10,
     },
 };
 

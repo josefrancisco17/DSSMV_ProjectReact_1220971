@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, View, Text} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 const BookScreen = () => {
     return (
@@ -9,6 +9,8 @@ const BookScreen = () => {
     );
 };
 
-const styles = {};
+const styles = StyleSheet.create({
+
+})
 
 export default BookScreen;

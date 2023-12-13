@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsScreen = ({navigation}) => {
@@ -10,7 +10,7 @@ const SettingsScreen = ({navigation}) => {
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
@@ -19,6 +19,6 @@ const styles = {
     text: {
         color: 'black'
     },
-};
+});
 
 export default SettingsScreen;

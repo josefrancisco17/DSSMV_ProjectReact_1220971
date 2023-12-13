@@ -15,7 +15,6 @@ export async function getLibrariesList() {
 export async function getBooksList(libraryId) {
     try {
         const url = BaseUrl + "library/" + libraryId + "/book";
-        console.log(url)
         const response = await get(url)
         return response.data
     } catch (error) {

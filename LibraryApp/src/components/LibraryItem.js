@@ -1,11 +1,11 @@
 import React from 'react';
 import {TouchableOpacity, View, Text} from 'react-native';
 
-const LibraryItem = ({item, handleClick}) => {
+const LibraryItem = ({library, handleClick}) => {
     return (
         <View>
             <TouchableOpacity style={styles.libraryItem} onPress={handleClick}>
-                <Text>{item.name}</Text>
+                <Text>{library.name}</Text>
             </TouchableOpacity>
         </View>
     );

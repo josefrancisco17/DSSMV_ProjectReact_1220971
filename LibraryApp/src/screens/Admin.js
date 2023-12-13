@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AdminScreen = ({navigation}) => {
     const logOut = async () => {
-        await AsyncStorage.removeItem('userName');
-        navigation.navigate('Login');
-    };
+        await AsyncStorage.removeItem('userName')
+        navigation.navigate('Login')
+    }
 
     return (
         <View style={styles.container}>
@@ -39,8 +39,8 @@ const AdminScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginBottom: 10,
     },
-});
+})
 
-export default AdminScreen;
+export default AdminScreen

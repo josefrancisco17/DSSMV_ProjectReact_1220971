@@ -7,16 +7,16 @@ const LoginScreen = ({navigation}) => {
 
     const onLogIn = async () => {
         if (inputText.toLowerCase().trim() === 'admin') {
-            await AsyncStorage.setItem('userName', inputText);
-            navigation.navigate('Admin');
+            await AsyncStorage.setItem('userName', inputText)
+            navigation.navigate('Admin')
         } else if (inputText !== '') {
-            await AsyncStorage.setItem('userName', inputText);
-            navigation.navigate('Home');
+            await AsyncStorage.setItem('userName', inputText)
+            navigation.navigate('Home')
         } else {
-            await AsyncStorage.setItem('userName', 'Wonderful User');
-            navigation.navigate('Home');
+            await AsyncStorage.setItem('userName', 'Wonderful User')
+            navigation.navigate('Home')
         }
-    };
+    }
 
     return (
         <View style={styles.screen}>
@@ -34,8 +34,8 @@ const LoginScreen = ({navigation}) => {
                 </TouchableOpacity>
             </View>
         </View>
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
     screen: {
@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
     },
-});
+})
 
-export default LoginScreen;
+export default LoginScreen
