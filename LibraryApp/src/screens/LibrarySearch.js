@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {TextInput, View, FlatList, Alert, TouchableOpacity, Text} from 'react-native';
-import { getLibrariesList, getBooksList } from '../service/RequestsService';
+import { getLibrariesList} from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';
 
 const CheckOutScreen = ({ navigation }) => {
