@@ -4,7 +4,7 @@ import {TouchableOpacity, View, Text} from 'react-native';
 const BookItem = ({item, handleClick}) => {
     return (
         <View>
-            <TouchableOpacity style={styles.libraryItem} onPress={handleClick}>
+            <TouchableOpacity style={styles.bookItem} onPress={handleClick}>
                 <Text>{item.name}</Text>
             </TouchableOpacity>
         </View>
@@ -12,7 +12,7 @@ const BookItem = ({item, handleClick}) => {
 };
 
 const styles = {
-    libraryItem: {
+    bookItem: {
         color: 'black',
         padding: 15,
         marginBottom: 10,

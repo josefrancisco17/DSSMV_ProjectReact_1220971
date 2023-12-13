@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {TextInput, View, FlatList, Alert} from 'react-native';
-import {getLibrariesList, getBooksList} from '../service/RequestsService';
+import {getLibrariesList} from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';
-import BookItem from '../components/LibraryItem';
 
-const CheckOutScreen = ({navigation}) => {
+const LibrarySearch = ({navigation}) => {
     const [searchLibrary, setSearchLibrary] = useState('');
     const [librariesList, setLibrariesList] = useState([]);
-    const [searchBook, setSearchBook] = useState('');
-    const [booksList, setBooksList] = useState([]);
 
     useEffect(() => {
         const fetchLibraries = async () => {
@@ -22,29 +19,17 @@ const CheckOutScreen = ({navigation}) => {
         fetchLibraries();
     }, []);
 
-    const fetchBooks = async (library) => {
-        try {
-            const books = await getBooksList(library.id);
-            setBooksList(books);
-        } catch (error) {
-            console.error('Error fetching books list:', error);
-        }
-    };
-
-    const filteredLibrariesList = librariesList.filter(
-        (library) => library.name && library.name.toLowerCase().includes(searchLibrary.toLowerCase())
+    const filteredLibraries = librariesList.filter(
+        (library) => library.name.toLowerCase().includes(searchLibrary.toLowerCase())
     );
 
-    const filteredBooksList = booksList.filter(
-        (book) => book.name && book.name.toLowerCase().includes(searchBook.toLowerCase())
-    );
-
-    const handleLibraryClick = async (library) => {
-        await fetchBooks(library)
-        console.log(booksList.length)
-        for (let i = 0; i < booksList.length; i++) {
-            console.log(booksList[i].book.title)
-        }
+    const handleLibraryClick = (item) => {
+        Alert.alert(
+            'Title',
+            'Message',
+            [{text: 'OK', onPress: () => console.log('OK Pressed')}],
+            {cancelable: false}
+        );
     };
 
     const handleBookClick = (item) => {
@@ -69,17 +54,15 @@ const CheckOutScreen = ({navigation}) => {
                 />
                 <FlatList
                     style={styles.flatList}
-                    data={filteredLibrariesList}
-                    renderItem={({item}) => (
-                        <LibraryItem item={item} handleClick={() => handleLibraryClick(item)}/>
-                    )}
+                    data={filteredLibraries}
+                    renderItem={({item}) => <LibraryItem item={item} handleClick={handleLibraryClick}/>}
                     keyExtractor={(library) => library.id.toString()}
                 />
             </View>
             <View style={styles.bookSearchContainer}>
                 <TextInput
                     style={styles.search}
-                    onChangeText={(text) => setSearchBook(text)}
+                    onChangeText={(text) => setSearchLibrary(text)}
                     placeholder="Search"
                     placeholderTextColor="black"
                     autoCapitalize="none"
@@ -87,11 +70,9 @@ const CheckOutScreen = ({navigation}) => {
                 />
                 <FlatList
                     style={styles.flatList}
-                    data={filteredBooksList}
-                    renderItem={({item}) => (
-                        <BookItem item={item} handleClick={() => handleBookClick(item)}/>
-                    )}
-                    keyExtractor={(book) => book.name.toString()}
+                    data={filte}
+                    renderItem={({item}) => <LibraryItem item={item} handleClick={handleLibraryClick}/>}
+                    keyExtractor={(library) => library.id.toString()}
                 />
             </View>
         </View>
