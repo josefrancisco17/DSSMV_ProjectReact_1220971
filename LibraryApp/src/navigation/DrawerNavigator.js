@@ -40,7 +40,7 @@ const DrawerNavigator = () => {
     }, []);
 
     return (
-        <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <CustomDrawerContent {...props} />}>
+        <Drawer.Navigator initialRouteName="Feed" drawerContent={(props) => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Feed" component={FeedScreen}
                            options={{drawerActiveTintColor: '#333', drawerActiveBackgroundColor: 'lightblue'}}/>
             <Drawer.Screen name="CheckOut" component={CheckOutScreen}

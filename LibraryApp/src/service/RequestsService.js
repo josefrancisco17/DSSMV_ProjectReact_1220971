@@ -16,7 +16,6 @@ export async function getLibrariesList() {
 export async function getLibraryBooksList(libraryId) {
     try {
         const url = BaseUrl + "library/" + libraryId + "/book"
-        console.log(url)
         const response = await get(url)
         return response.data
     } catch (error) {
@@ -77,7 +76,7 @@ export async function getReviewsList(bookIsbn) {
 export async function postCheckOutBook(libraryId, bookIsbn, userName) {
     try {
         const url = BaseUrl + "library/" + libraryId + "/book/" + bookIsbn + "/checkout" + "?userId=" + userName
-        const body = " "
+        const body = {}
         const response = await post(url, body)
         return response.data
     } catch (error) {
@@ -89,7 +88,7 @@ export async function postCheckInBook(libraryId, bookIsbn, userName) {
     try {
         libraryId = String.format("%s-%s-%s-%s-%s", libraryId.substring(0, 8), libraryId.substring(8, 12), libraryId.substring(12, 16), libraryId.substring(16, 20), libraryId.substring(20))
         const url = BaseUrl + "library/" + libraryId + "/book/" + bookIsbn + "/checkin" + "?userId=" + userName
-        const body = " "
+        const body = {}
         const response = await post(url, body)
         return response.data
     } catch (error) {
@@ -97,10 +96,13 @@ export async function postCheckInBook(libraryId, bookIsbn, userName) {
     }
 }
 
-export async function postReviewBook(libraryId, bookIsbn, userName, reviewText, recommended) {
+export async function postReviewBook(bookIsbn, userName, reviewText, recommended) {
     try {
         const url = BaseUrl + "book/" + bookIsbn + "/review?userId=" + userName
-        const body = "{\"recommended\": " + recommended + ", \"review\": \"" + reviewText + "\"}"
+        const body = {
+            recommended: recommended,
+            review: reviewText
+        }
         const response = await post(url, body)
         return response.data
     } catch (error) {
@@ -108,10 +110,16 @@ export async function postReviewBook(libraryId, bookIsbn, userName, reviewText, 
     }
 }
 
-export async function postLibrary(libraryId, name, address, openTime, closeTime, openDays) {
+export async function postLibrary(name, address, openTime, closeTime, openDays) {
     try {
         const url = BaseUrl + "library"
-        const body = "{\"address\": \"" + address + "\", \"closeTime\": \"" + closeTime + "\", \"name\": \"" + name + "\", \"openDays\": \"" + openDays + "\", \"openTime\": \"" + openTime + "\"}"
+        const body = {
+            address: address,
+            closeTime: closeTime,
+            name: name,
+            openDays: openDays,
+            openTime: openTime
+        }
         const response = await post(url, body)
         return response.data
     } catch (error) {
@@ -119,10 +127,12 @@ export async function postLibrary(libraryId, name, address, openTime, closeTime,
     }
 }
 
-export async function postLibraryBook(libraryId, bookIsbn, libraryID, stock) {
+export async function postLibraryBook(bookIsbn, libraryID, stock) {
     try {
         const url = BaseUrl + "library/" + libraryID + "/book/" + bookIsbn
-        const body =  "{\"stock\": \"" + stock  + "\"}"
+        const body = {
+            stock: stock
+        }
         const response = await post(url, body)
         return response.data
     } catch (error) {
@@ -130,21 +140,24 @@ export async function postLibraryBook(libraryId, bookIsbn, libraryID, stock) {
     }
 }
 
-export async function updateReviewBook(libraryId, bookIsbn, userName, reviewText, recommended, reviewId) {
+export async function updateReviewBook(bookIsbn, userName, reviewText, recommended, reviewId) {
     try {
         const url = BaseUrl + "book/" + bookIsbn + "/review/" + reviewId + "?userId=" + userName
-        const body =  "{\"recommended\": " + recommended + ", \"review\": \"" + reviewText + "\"}"
-        const response = await post(url, body)
+        const body = {
+            recommended: recommended,
+            review: reviewText
+        }
+        const response = await put(url, body)
         return response.data
     } catch (error) {
-        throw error
+        throw error.data
     }
 }
 
 export async function deleteLibrary(libraryId) {
     try {
         const url = BaseUrl + "library/" + libraryId
-        const response = await post(url)
+        const response = await del(url)
         return response.data
     } catch (error) {
         throw error
