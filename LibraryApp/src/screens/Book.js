@@ -1,43 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
-import { getBook } from '../service/RequestsService';
+import {getBook, postCheckOutBook} from '../service/RequestsService';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const BookScreen = ({ route }) => {
-    const { libraryBook } = route.params;
-    const library = libraryBook.library;
-    const [url, setUrl] = useState(' ');
-    const [book, setBook] = useState('');
+const BookScreen = ({ navigation, route }) => {
+    const { libraryBook } = route.params
+    const library = libraryBook.library
+    const book = libraryBook.book
+    const coverUrl = 'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
 
-    useEffect(() => {
-        const getBookfromWs = async () => {
-            try {
-                const newBook = await getBook(libraryBook.book.isbn);
-                const imageUrl =
-                    'http://193.136.62.24/v1/' +
-                    newBook.cover.largeUrl.slice('/api/v1/'.length);
-                setUrl(imageUrl);
-                setBook(newBook);
-            } catch (error) {
-                console.error('Error getting book:', error);
-            }
-        };
-        getBookfromWs();
-    }, []);
+    const handleCheckOutClick = async () => {
+        const userName = await AsyncStorage.getItem('userName');
+        await postCheckOutBook(library.id, book.isbn, userName)
+        navigation.navigate('Home')
+    }
+
+    const handleReviewsClick = async () => {
+        navigation.navigate('Reviews', {libraryBook})
+    }
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
             <View style={styles.container}>
-                <Image source={{ uri: url }} style={styles.bookImage} />
+                <Image source={{ uri: coverUrl }} style={styles.bookImage} />
                 <Text style={styles.title}>{book.title}</Text>
                 <Text style={styles.description}>{book.description}</Text>
                 <Text style={styles.details}>Pages: {book.numberOfPages}</Text>
                 <Text style={styles.details}>Author: {book.byStatement}</Text>
                 <Text style={styles.details}>Library: {library.name}</Text>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Reviews</Text>
+                    <Text style={styles.buttonText} onPress={handleCheckOutClick}>Check Out</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Check Out</Text>
+                    <Text style={styles.buttonText} onPress={handleReviewsClick}>Reviews</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>
