@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
 import {getLibraryBooksList} from "../service/RequestsService";
+import { useFocusEffect } from '@react-navigation/native';
 import BookItem from '../components/BookItem.js';
 
 const BookSearchScreen = ({ navigation, route }) => {
@@ -8,17 +9,20 @@ const BookSearchScreen = ({ navigation, route }) => {
     const [searchBook, setSearchBook] = useState('');
     const [booksList, setBooksList] = useState([]);
 
-    useEffect(() => {
-        const getLibraryBooksfromWs = async () => {
-            try {
-                const books = await getLibraryBooksList(library.id);
-                setBooksList(books);
-            } catch (error) {
-                console.error('Error getting books list:', error);
-            }
-        };
-        getLibraryBooksfromWs();
-    }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData()
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const books = await getLibraryBooksList(library.id);
+            setBooksList(books);
+        } catch (error) {
+            console.error('Error getting books list:', error);
+        }
+    };
 
     const filteredBooksList = booksList.filter(
         (libraryBook) => libraryBook.book.title && libraryBook.book.title.toLowerCase().includes(searchBook.toLowerCase())

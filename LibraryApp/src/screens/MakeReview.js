@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Switch, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getReviewsList,postReviewBook, updateReviewBook} from "../service/RequestsService";
+import {getCheckOutsList, getReviewsList, postReviewBook, updateReviewBook} from "../service/RequestsService";
+import {useFocusEffect} from "@react-navigation/native";
 
 const MakeReviewScreen = ({ navigation, route }) => {
     const {book, reviewId} = route.params
@@ -9,13 +10,20 @@ const MakeReviewScreen = ({ navigation, route }) => {
     const [reviewText, setReviewText] = useState("");
     const [recommended, setRecommended] = useState(false);
 
-    useEffect(() => {
-        const getUserName = async () => {
-            let user = await AsyncStorage.getItem('userName')
-            setUserName(user)
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData()
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('userName');
+            setUserName(user);
+        } catch (error) {
+            console.error('Error in fetchData:', error);
         }
-        getUserName()
-    }, []);
+    };
 
     const handleSubmitClick = async () => {
         if (reviewId === null) {

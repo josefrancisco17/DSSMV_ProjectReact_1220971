@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Button, Alert, FlatList, StyleSheet, Text, ScrollView, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReviewItem from "../components/ReviewItem.js";
-import {getLibraryBooksList, getReviewsList} from "../service/RequestsService";
+import {getCheckOutsList, getLibraryBooksList, getReviewsList} from "../service/RequestsService";
+import {useFocusEffect} from "@react-navigation/native";
 
 const ReviewsScreen = ({ navigation, route }) => {
     const [userName, setUserName] = useState("")
@@ -10,22 +11,23 @@ const ReviewsScreen = ({ navigation, route }) => {
     const book = libraryBook.book
     const [reviews, setReviews] = useState([])
 
-    useEffect(() => {
-        const getUserName = async () => {
-            let user = await AsyncStorage.getItem('userName')
-            setUserName(user)
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData()
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('userName');
+            setUserName(user);
+
+            const bookReviews = await getReviewsList(book.isbn)
+            setReviews(bookReviews)
+        } catch (error) {
+            console.error('Error in fetchData:', error);
         }
-        const getBookReviewsfromWs = async () => {
-            try {
-                const bookReviews = await getReviewsList(book.isbn)
-                setReviews(bookReviews)
-            } catch (error) {
-                console.error('Error getting bookReviews list:', error)
-            }
-        };
-        getUserName()
-        getBookReviewsfromWs()
-    }, []);
+    };
 
     const handleReviewClick = async (review) => {
         Alert.alert(

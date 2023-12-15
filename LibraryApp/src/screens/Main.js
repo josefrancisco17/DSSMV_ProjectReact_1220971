@@ -7,8 +7,7 @@ const MainScreen = ({navigation}) => {
         let userName = await AsyncStorage.getItem('userName');
         if (userName === null) {
             navigation.navigate('Login')
-        }
-        if (userName.toLowerCase().trim() === 'admin') {
+        } else if (userName.toLowerCase().trim() === 'admin') {
             navigation.navigate('Admin')
         } else {
             navigation.navigate('Home')

@@ -1,29 +1,31 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getCheckOutsHistoryList, getReviewsList} from "../service/RequestsService";
+import { useFocusEffect } from '@react-navigation/native';
+import {getCheckOutsHistoryList, getCheckOutsList, getReviewsList} from "../service/RequestsService";
 import CheckOutItem from "../components/CheckOutItem";
 
 const CheckOutHistoryScreen = ({navigation}) => {
     const [userName, setUserName] = useState("")
     const [history, setHistory] = useState([])
 
-    useEffect(() => {
-        const getUserName = async () => {
-            let user = await AsyncStorage.getItem('userName')
-            setUserName(user)
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData()
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const user = await AsyncStorage.getItem('userName');
+            setUserName(user);
+
+            const checkOutHistory = await getCheckOutsHistoryList(userName)
+            setHistory(checkOutHistory)
+        } catch (error) {
+            console.error('Error getting checkOutHistory list: ', error)
         }
-        const getHistoryfromWs = async () => {
-            try {
-                const checkOutHistory = await getCheckOutsHistoryList(userName)
-                setHistory(checkOutHistory)
-            } catch (error) {
-                console.error('Error getting checkOutHistory list:', error)
-            }
-        };
-        getUserName()
-        getHistoryfromWs()
-    }, []);
+    };
 
     return (
         <View style={styles.screen}>
