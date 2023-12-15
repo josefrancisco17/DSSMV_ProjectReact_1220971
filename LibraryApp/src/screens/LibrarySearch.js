@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {TextInput, View, FlatList, Alert, TouchableOpacity, Text} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import {getLibrariesList} from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';
 
@@ -7,17 +8,20 @@ const CheckOutScreen = ({navigation}) => {
     const [searchLibrary, setSearchLibrary] = useState('');
     const [librariesList, setLibrariesList] = useState([]);
 
-    useEffect(() => {
-        const getLibrariesfromWs = async () => {
-            try {
-                const libraries = await getLibrariesList();
-                setLibrariesList(libraries);
-            } catch (error) {
-                console.error('Error getting libraries list:', error);
-            }
-        };
-        getLibrariesfromWs();
-    }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData();
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const libraries = await getLibrariesList();
+            setLibrariesList(libraries);
+        } catch (error) {
+            console.error('Error getting libraries list:', error);
+        }
+    };
 
     const filteredLibrariesList = librariesList.filter(
         (library) =>
