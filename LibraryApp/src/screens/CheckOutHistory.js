@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ReviewItem from "../components/ReviewItem";
 import {getCheckOutsHistoryList, getReviewsList} from "../service/RequestsService";
 import CheckOutItem from "../components/CheckOutItem";
 
@@ -32,7 +31,7 @@ const CheckOutHistoryScreen = ({navigation}) => {
                 style={styles.flatList}
                 data={history}
                 renderItem={({item}) => (
-                    <CheckOutItem checkOut={item}/>
+                    <CheckOutItem checkOut={item} handleClick={() => {}}/>
                 )}
                 keyExtractor={(checkOut) => checkOut.id.toString()}
             />

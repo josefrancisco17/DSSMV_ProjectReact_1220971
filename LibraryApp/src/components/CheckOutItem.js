@@ -3,10 +3,10 @@ import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getCheckOutsHistoryList} from "../service/RequestsService";
 
-const CheckOutItem = ({ checkOut }) => {
+const CheckOutItem = ({ checkOut, handleClick }) => {
     return (
         <View>
-            <TouchableOpacity style={styles.checkoutItem}>
+            <TouchableOpacity style={styles.checkoutItem} onPress={handleClick}>
                 <Text>{checkOut.book.title}</Text>
                 <Text>{checkOut.libraryName}</Text>
                 <Text>{checkOut.dueDate}</Text>

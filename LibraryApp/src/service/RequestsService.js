@@ -86,7 +86,6 @@ export async function postCheckOutBook(libraryId, bookIsbn, userName) {
 
 export async function postCheckInBook(libraryId, bookIsbn, userName) {
     try {
-        libraryId = String.format("%s-%s-%s-%s-%s", libraryId.substring(0, 8), libraryId.substring(8, 12), libraryId.substring(12, 16), libraryId.substring(16, 20), libraryId.substring(20))
         const url = BaseUrl + "library/" + libraryId + "/book/" + bookIsbn + "/checkin" + "?userId=" + userName
         const body = {}
         const response = await post(url, body)
