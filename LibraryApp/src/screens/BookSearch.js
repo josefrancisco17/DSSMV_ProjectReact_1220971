@@ -29,7 +29,10 @@ const BookSearchScreen = ({ navigation, route }) => {
     )
 
     const handleBookClick = (libraryBook) => {
-        navigation.navigate('Book', {libraryBook})
+        const book = libraryBook.book
+        const libraryId = libraryBook.library.id
+        const libraryName = libraryBook.library.name
+        navigation.navigate('Book', {book, libraryId, libraryName})
     }
 
     return (

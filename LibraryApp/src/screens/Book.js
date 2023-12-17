@@ -4,19 +4,17 @@ import { postCheckOutBook} from '../service/RequestsService';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const BookScreen = ({ navigation, route }) => {
-    const { libraryBook } = route.params
-    const library = libraryBook.library
-    const book = libraryBook.book
+    const { book, libraryId, libraryName } = route.params
     const coverUrl = 'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
 
     const handleCheckOutClick = async () => {
         const userName = await AsyncStorage.getItem('userName');
-        await postCheckOutBook(library.id, book.isbn, userName)
+        await postCheckOutBook(libraryId, book.isbn, userName)
         navigation.navigate('Home')
     }
 
     const handleReviewsClick = async () => {
-        navigation.navigate('Reviews', {libraryBook})
+        navigation.navigate('Reviews', {book})
     }
 
     return (
@@ -27,7 +25,7 @@ const BookScreen = ({ navigation, route }) => {
                 <Text style={styles.description}>{book.description}</Text>
                 <Text style={styles.details}>Pages: {book.numberOfPages}</Text>
                 <Text style={styles.details}>Author: {book.byStatement}</Text>
-                <Text style={styles.details}>Library: {library.name}</Text>
+                <Text style={styles.details}>Library: {libraryName}</Text>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.buttonText} onPress={handleCheckOutClick}>Check Out</Text>
                 </TouchableOpacity>

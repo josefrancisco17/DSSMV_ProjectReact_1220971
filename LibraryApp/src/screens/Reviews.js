@@ -7,8 +7,7 @@ import {useFocusEffect} from "@react-navigation/native";
 
 const ReviewsScreen = ({ navigation, route }) => {
     const [userName, setUserName] = useState("")
-    const { libraryBook } = route.params
-    const book = libraryBook.book
+    const { book } = route.params
     const [reviews, setReviews] = useState([])
 
     useFocusEffect(

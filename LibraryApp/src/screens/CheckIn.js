@@ -4,6 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCheckOutsList, postCheckInBook} from "../service/RequestsService";
 import CheckOutItem from "../components/CheckOutItem";
+import {check} from "react-native-permissions";
 
 const CheckInScreen = ({navigation}) => {
     const [userName, setUserName] = useState("")
@@ -34,13 +35,20 @@ const CheckInScreen = ({navigation}) => {
         fetchData();
     }
 
+    const handleLongPress = async(checkOut) => {
+        const book = checkOut.book
+        const libraryId = checkOut.libraryId
+        const libraryName = checkOut.libraryName
+        navigation.navigate('Book', {book, libraryId, libraryName})
+    }
+
     return (
         <View style={styles.screen}>
             <FlatList
                 style={styles.flatList}
                 data={checkedOutBooksList}
                 renderItem={({item}) => (
-                    <CheckOutItem checkOut={item} handle handleClick={() => handleCheckOutClick(item)}/>
+                    <CheckOutItem checkOut={item} handleClick={() => handleCheckOutClick(item)} handleLongPress={() => handleLongPress(item)}/>
                 )}
                 keyExtractor={(checkOut) => checkOut.id.toString()}
             />

@@ -31,7 +31,7 @@ const MakeReviewScreen = ({ navigation, route }) => {
         } else {
             await updateReviewBook(book.isbn, userName, reviewText, recommended.toString(), reviewId)
         }
-        navigation.replace('Home')
+        navigation.replace('Reviews', {book})
     }
 
     const toggleSwitch = () => {

@@ -24,13 +24,20 @@ const CheckOutHistoryScreen = ({navigation}) => {
         }
     };
 
+    const handleLongPress = async(checkOut) => {
+        const book = checkOut.book
+        const libraryId = checkOut.libraryId
+        const libraryName = checkOut.libraryName
+        navigation.navigate('Book', {book, libraryId, libraryName})
+    }
+
     return (
         <View style={styles.screen}>
             <FlatList
                 style={styles.flatList}
                 data={history}
                 renderItem={({item}) => (
-                    <CheckOutItem checkOut={item} handleClick={() => {}}/>
+                    <CheckOutItem checkOut={item} handleClick={() => {}} handleLongPress={() => handleLongPress(item)}/>
                 )}
                 keyExtractor={(checkOut) => checkOut.id.toString()}
             />
