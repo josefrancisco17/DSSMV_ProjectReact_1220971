@@ -5,7 +5,6 @@ import FeedScreen from "../screens/Feed";
 import CheckOutScreen from '../screens/LibrarySearch.js'
 import CheckInScreen from '../screens/CheckIn.js'
 import ProfileScreen from '../screens/Profile.js'
-import SettingsScreen from '../screens/Settings.js'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getWeather} from "../service/RequestsService";
 
@@ -53,8 +52,6 @@ const DrawerNavigator = () => {
             <Drawer.Screen name="CheckIn" component={CheckInScreen}
                            options={{drawerActiveTintColor: '#333', drawerActiveBackgroundColor: 'lightblue'}}/>
             <Drawer.Screen name="Profile" component={ProfileScreen}
-                           options={{drawerActiveTintColor: '#333', drawerActiveBackgroundColor: 'lightblue'}}/>
-            <Drawer.Screen name="Settings" component={SettingsScreen}
                            options={{drawerActiveTintColor: '#333', drawerActiveBackgroundColor: 'lightblue'}}/>
         </Drawer.Navigator>
     );
