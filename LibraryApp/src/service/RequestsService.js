@@ -1,5 +1,5 @@
 import {get, post, put, del} from '../handler/NetworkHandler'
-import cardSheet from "@react-navigation/stack/src/views/Stack/CardSheet";
+import Geolocation from "@react-native-community/geolocation";
 
 const BaseUrl = "http://193.136.62.24/v1/";
 
@@ -163,14 +163,29 @@ export async function deleteLibrary(libraryId) {
     }
 }
 
-export async function getWeather(latitude, longitude, apikey) {
+export async function getWeather() {
     try {
-        const url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&apikey=" + apikey
-        const response = await get(url)
-        return response.data
+        await Geolocation.requestAuthorization();
+        const position = await getCurrentPosition();
+        const { latitude, longitude } = position.coords;
+        const apikey = "fadb4e6924c13a4b573a0d08cc9b7731";
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&apikey=${apikey}`;
+        const response = await get(url);
+
+        const temperature = Math.round((response.data.main.temp - 273.15) * 10.0) / 10.0;
+        const weather = response.data.weather[0].main;
+        const cityName = response.data.name;
+        return `${cityName}, ${weather}, ${temperature} ºC`;
     } catch (error) {
-        throw error
+        console.error('Error fetching weather data: ', error);
+        throw error;
     }
+}
+
+function getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+        Geolocation.getCurrentPosition(resolve, reject);
+    });
 }
 
 

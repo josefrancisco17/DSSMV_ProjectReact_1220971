@@ -6,7 +6,6 @@ import {getCheckOutsHistoryList, getCheckOutsList, getReviewsList} from "../serv
 import CheckOutItem from "../components/CheckOutItem";
 
 const CheckOutHistoryScreen = ({navigation}) => {
-    const [userName, setUserName] = useState("")
     const [history, setHistory] = useState([])
 
     useFocusEffect(
@@ -18,9 +17,7 @@ const CheckOutHistoryScreen = ({navigation}) => {
     const fetchData = async () => {
         try {
             const user = await AsyncStorage.getItem('userName');
-            setUserName(user);
-
-            const checkOutHistory = await getCheckOutsHistoryList(userName)
+            const checkOutHistory = await getCheckOutsHistoryList(user)
             setHistory(checkOutHistory)
         } catch (error) {
             console.error('Error getting checkOutHistory list: ', error)
