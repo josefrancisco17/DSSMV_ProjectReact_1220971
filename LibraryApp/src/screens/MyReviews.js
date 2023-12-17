@@ -26,6 +26,7 @@ const MyReviewsScreen = ({navigation}) => {
             setIsLoading(false);
         }
     };
+
     return (
         <View style={styles.screen}>
             {isLoading ? (

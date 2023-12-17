@@ -51,7 +51,7 @@ const BookSearchScreen = ({ navigation, route }) => {
                 renderItem={({ item }) => (
                     <BookItem libraryBook={item} handleClick={() => handleBookClick(item)} />
                 )}
-                keyExtractor={(book) => book.isbn.toString()}
+                keyExtractor={(libraryBook) => libraryBook.isbn.toString()}
             />
         </View>
     )

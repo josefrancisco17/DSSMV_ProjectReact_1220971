@@ -2,10 +2,22 @@ import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const AdminScreen = ({navigation}) => {
+const AdminScreen = ({ navigation }) => {
     const logOut = async () => {
         await AsyncStorage.removeItem('userName')
         navigation.navigate('Login')
+    }
+
+    const handleCreateLibrary = () => {
+        navigation.navigate('CreateLibrary')
+    }
+
+    const handleDeleteLibrary = () => {
+        navigation.navigate('DeleteLibrary')
+    }
+
+    const handleCreateBook = () => {
+        navigation.navigate('CreateBook')
     }
 
     return (
@@ -18,24 +30,18 @@ const AdminScreen = ({navigation}) => {
 
             <View style={styles.sectionContainer}>
                 <Text style={styles.sectionText}>Manage Libraries</Text>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleCreateLibrary}>
                     <Text style={styles.buttonText}>Create Library</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Update Library</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleDeleteLibrary}>
                     <Text style={styles.buttonText}>Delete Library</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.sectionContainer}>
                 <Text style={styles.sectionText}>Manage Books</Text>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={handleCreateBook}>
                     <Text style={styles.buttonText}>Create Book</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Delete Book</Text>
                 </TouchableOpacity>
             </View>
         </View>
