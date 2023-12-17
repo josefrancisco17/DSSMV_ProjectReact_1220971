@@ -73,6 +73,33 @@ export async function getReviewsList(bookIsbn) {
     }
 }
 
+export async function getMyReviewsList(userName) {
+    try {
+        const userReviews = []
+        const libraries = await getLibrariesList()
+        for (let i = 0; i < libraries.length; i++) {
+            const libraryBooks = await getLibraryBooksList(libraries[i].id)
+            for (let j = 0; j < libraryBooks.length; j++) {
+                const reviews = await getReviewsList(libraryBooks[j].isbn)
+                for(let k = 0; k < reviews.length; k ++) {
+                    if (reviews[k].reviewer === userName) {
+                        const reviewAlreadyExists = userReviews.some(
+                            (userReview) => userReview.id === reviews[k].id
+                        );
+                        if (!reviewAlreadyExists) {
+                            userReviews.push(reviews[k]);
+                        }
+                    }
+                }
+            }
+
+        }
+        return userReviews
+    } catch (error) {
+        throw error
+    }
+}
+
 export async function postCheckOutBook(libraryId, bookIsbn, userName) {
     try {
         const url = BaseUrl + "library/" + libraryId + "/book/" + bookIsbn + "/checkout" + "?userId=" + userName
