@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Button, Alert, FlatList, StyleSheet, Text, ScrollView, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReviewItem from "../components/ReviewItem.js";
-import {getCheckOutsList, getLibraryBooksList, getReviewsList} from "../service/RequestsService";
+import {getCheckOutsList, getLibraryBooksList, getRecommendedCount, getReviewsList} from "../service/RequestsService";
 import {useFocusEffect} from "@react-navigation/native";
 
 const ReviewsScreen = ({ navigation, route }) => {
-    const [userName, setUserName] = useState("")
     const { book } = route.params
+    const [userName, setUserName] = useState("")
+    const [recommendCount, setRecommendCount] = useState("")
     const [reviews, setReviews] = useState([])
 
     useFocusEffect(
@@ -20,6 +21,9 @@ const ReviewsScreen = ({ navigation, route }) => {
         try {
             const user = await AsyncStorage.getItem('userName');
             setUserName(user);
+
+            const recommendNum = await getRecommendedCount(book.isbn)
+            setRecommendCount(recommendNum)
 
             const bookReviews = await getReviewsList(book.isbn)
             setReviews(bookReviews)
@@ -52,6 +56,7 @@ const ReviewsScreen = ({ navigation, route }) => {
             <TouchableOpacity style={styles.button}>
                 <Text onPress={handleGoHome}>Home</Text>
             </TouchableOpacity>
+            <Text style={styles.text}>Recommend Count: {recommendCount}</Text>
             <FlatList
                 style={styles.flatList}
                 data={reviews}

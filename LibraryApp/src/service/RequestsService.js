@@ -43,6 +43,16 @@ export async function getLibrary(libraryId) {
     }
 }
 
+export async function getRecommendedCount(bookIsbn) {
+    try {
+        const url = BaseUrl + "book/" + bookIsbn + "/review/recommended-count"
+        const response = await get(url)
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
 export async function getCheckOutsList(userName) {
     try {
         const url = BaseUrl + "user/checked-out?userId=" + userName
