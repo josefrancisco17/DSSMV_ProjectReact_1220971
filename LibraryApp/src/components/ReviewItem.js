@@ -1,15 +1,15 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 
-const BookItem = ({ review, handleClick }) => {
+const BookItem = ({ review }) => {
     return (
         <View>
-            <TouchableOpacity style={styles.bookItem} onPress={handleClick}>
+            <View style={styles.bookItem}>
                 <Text>{review.reviewer}</Text>
                 <Text>{review.review}</Text>
                 <Text>{review.recommended.toString()}</Text>
                 <Text>{review.createdDate}</Text>
-            </TouchableOpacity>
+            </View>
         </View>
     );
 };

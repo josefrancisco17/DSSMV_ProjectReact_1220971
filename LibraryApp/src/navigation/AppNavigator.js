@@ -7,6 +7,7 @@ import MainScreen from "../screens/Main";
 import BookSearchScreen from "../screens/BookSearch.js";
 import LibrarySearchScreen from "../screens/LibrarySearch.js";
 import BookScreen from "../screens/Book.js";
+import LibraryScreen from "../screens/Library.js";
 import ReviewsScreen from "../screens/Reviews.js";
 import MakeReviewScreen from "../screens/MakeReview.js";
 
@@ -24,6 +25,7 @@ const AppNavigator = () => {
             <Stack.Screen name="BookSearch" component={BookSearchScreen}/>
             <Stack.Screen name="LibrarySearch" component={LibrarySearchScreen}/>
             <Stack.Screen name="Book" component={BookScreen}/>
+            <Stack.Screen name="Library" component={LibraryScreen}/>
             <Stack.Screen name="Reviews" component={ReviewsScreen}/>
             <Stack.Screen name="MakeReview" component={MakeReviewScreen}/>
         </Stack.Navigator>

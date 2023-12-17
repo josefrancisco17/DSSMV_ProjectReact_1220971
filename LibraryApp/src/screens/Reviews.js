@@ -28,20 +28,6 @@ const ReviewsScreen = ({ navigation, route }) => {
         }
     };
 
-    const handleReviewClick = async (review) => {
-        Alert.alert(
-            'Review Details',
-            `Author: ${review.reviewer}\nRating: ${review.recommended}\nComment: ${review.review}`,
-            [
-                {
-                    text: 'OK',
-                    onPress: () => console.log('OK Pressed'),
-                },
-            ],
-            { cancelable: false }
-        );
-    };
-
     const handleMakeReview = async () => {
         let reviewId = null
         for (let i = 0; i < reviews.length; i++) {
@@ -54,16 +40,23 @@ const ReviewsScreen = ({ navigation, route }) => {
         navigation.navigate('MakeReview', {book, reviewId})
     };
 
+    const handleGoHome = () => {
+        navigation.replace('Home')
+    };
+
     return (
         <View style={styles.screen}>
-            <TouchableOpacity style={styles.reviewButton}>
+            <TouchableOpacity style={styles.button}>
                 <Text onPress={handleMakeReview}>Review</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+                <Text onPress={handleGoHome}>Home</Text>
             </TouchableOpacity>
             <FlatList
                 style={styles.flatList}
                 data={reviews}
                 renderItem={({item}) => (
-                    <ReviewItem review={item} handleClick={() => handleReviewClick(item)}/>
+                    <ReviewItem review={item}/>
                 )}
                 keyExtractor={(bookReview) => bookReview.id.toString()}
             />
@@ -84,7 +77,7 @@ const styles = StyleSheet.create({
         border: 2,
         borderWidth: 2,
     },
-    reviewButton: {
+    button: {
         padding: 10,
         backgroundColor: 'blue',
         alignItems: 'center',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
+import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image, Button} from 'react-native';
 import { postCheckOutBook} from '../service/RequestsService';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -17,8 +17,13 @@ const BookScreen = ({ navigation, route }) => {
         navigation.navigate('Reviews', {book})
     }
 
+    const handleGoHome = () => {
+        navigation.replace('Home')
+    };
+
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
+            <Button onPress={handleGoHome} title="Home"/>
             <View style={styles.container}>
                 <Image source={{ uri: coverUrl }} style={styles.bookImage} />
                 <Text style={styles.title}>{book.title}</Text>
