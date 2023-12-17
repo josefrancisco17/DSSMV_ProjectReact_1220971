@@ -165,7 +165,6 @@ export async function deleteLibrary(libraryId) {
 
 export async function getWeather() {
     try {
-        await Geolocation.requestAuthorization();
         const position = await getCurrentPosition();
         const { latitude, longitude } = position.coords;
         const apikey = "fadb4e6924c13a4b573a0d08cc9b7731";

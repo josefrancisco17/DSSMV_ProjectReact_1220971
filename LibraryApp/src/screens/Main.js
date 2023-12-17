@@ -1,8 +1,13 @@
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Geolocation from "@react-native-community/geolocation";
 
 const MainScreen = ({navigation}) => {
+    const getPermissions = async() => {
+        Geolocation.requestAuthorization();
+    }
+
     const checkLogIn = async () => {
         let userName = await AsyncStorage.getItem('userName');
         if (userName === null) {
@@ -15,7 +20,8 @@ const MainScreen = ({navigation}) => {
     }
 
     useEffect(() => {
-        checkLogIn();
+        checkLogIn()
+        getPermissions()
     }, []);
 
     return (
