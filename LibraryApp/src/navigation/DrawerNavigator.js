@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Text, View} from 'react-native';
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItemList} from '@react-navigation/drawer';
 import FeedScreen from "../screens/Feed";
@@ -7,15 +7,23 @@ import CheckInScreen from '../screens/CheckIn.js'
 import ProfileScreen from '../screens/Profile.js'
 import SettingsScreen from '../screens/Settings.js'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getWeather} from "../service/RequestsService";
 
 const Drawer = createDrawerNavigator();
-let userName
-
-async function getUserName() {
-    userName = await AsyncStorage.getItem('userName')
-}
 
 const CustomDrawerContent = (props) => {
+    const [userName, setUserName] = useState('')
+    const [weatherStatement, setWeatherStatement] = useState('')
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    async function fetchData() {
+        setUserName(await AsyncStorage.getItem('userName'))
+        setWeatherStatement(await getWeather())
+    }
+
     async function logOut() {
         await AsyncStorage.removeItem('userName')
         props.navigation.replace('Login')
@@ -25,6 +33,7 @@ const CustomDrawerContent = (props) => {
         <DrawerContentScrollView {...props}>
             <View>
                 <Text style={styles.text}>User Name: {userName}</Text>
+                <Text style={styles.text}>{weatherStatement}</Text>
             </View>
             <DrawerItemList {...props} />
             <View style={styles.drawerBottom}>
@@ -35,10 +44,6 @@ const CustomDrawerContent = (props) => {
 };
 
 const DrawerNavigator = () => {
-    useEffect(() => {
-        getUserName();
-    }, []);
-
     return (
         <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Feed" component={FeedScreen}

@@ -1,6 +1,11 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyReviewsScreen from "./MyReviews";
+import CheckOutHistory from "./CheckOutHistory";
+
+const Tab = createBottomTabNavigator();
 
 const ProfileScreen = ({navigation}) => {
     const logOut = async () => {
@@ -8,10 +13,10 @@ const ProfileScreen = ({navigation}) => {
         navigation.navigate('Login');
     };
     return (
-        <View style={styles.screen}>
-            <Text style={styles.text}>Profile Screen</Text>
-            <Button onPress={logOut} title="Logout"/>
-        </View>
+        <Tab.Navigator screenOptions={{headerShown: false}}>
+            <Tab.Screen name="MyReviews" component={MyReviewsScreen} />
+            <Tab.Screen name="CheckOutHistory" component={CheckOutHistory} />
+        </Tab.Navigator>
     );
 };
 

@@ -1,31 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
-import {getBooksList, getLibrariesList} from "../service/RequestsService";
+import {getLibraryBooksList} from "../service/RequestsService";
+import { useFocusEffect } from '@react-navigation/native';
 import BookItem from '../components/BookItem.js';
 
 const BookSearchScreen = ({ navigation, route }) => {
-    const { library} = route.params;
+    const { library } = route.params;
     const [searchBook, setSearchBook] = useState('');
     const [booksList, setBooksList] = useState([]);
 
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const books = await getBooksList(library.id);
-                setBooksList(books);
-            } catch (error) {
-                console.error('Error fetching books list:', error);
-            }
-        };
-        fetchBooks();
-    }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchData()
+        }, [])
+    );
+
+    const fetchData = async () => {
+        try {
+            const books = await getLibraryBooksList(library.id);
+            setBooksList(books);
+        } catch (error) {
+            console.error('Error getting books list:', error);
+        }
+    };
 
     const filteredBooksList = booksList.filter(
         (libraryBook) => libraryBook.book.title && libraryBook.book.title.toLowerCase().includes(searchBook.toLowerCase())
     )
 
-    const handleBookClick = (item) => {
-        navigation.navigate('Book')
+    const handleBookClick = (libraryBook) => {
+        const book = libraryBook.book
+        const libraryId = libraryBook.library.id
+        const libraryName = libraryBook.library.name
+        navigation.navigate('Book', {book, libraryId, libraryName})
     }
 
     return (
