@@ -5,7 +5,7 @@ const BookItem = ({ libraryBook, handleClick }) => {
     return (
         <View>
             <TouchableOpacity style={styles.bookItem} onPress={handleClick}>
-                <Text>{libraryBook.book.title}</Text>
+                <Text style={styles.text}>{libraryBook.book.title}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -13,11 +13,18 @@ const BookItem = ({ libraryBook, handleClick }) => {
 
 const styles = StyleSheet.create({
     bookItem: {
-        padding: 15,
+        color: 'black',
+        padding: 20,
         marginBottom: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#007bff',
         borderRadius: 10,
     },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#ccc',
+        textAlign: 'center',
+    }
 });
 
 export default BookItem;

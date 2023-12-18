@@ -1,24 +1,31 @@
 import React from 'react';
-import {TouchableOpacity, View, Text} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 const LibraryItem = ({library, handleClick}) => {
     return (
         <View>
             <TouchableOpacity style={styles.libraryItem} onPress={handleClick}>
-                <Text>{library.name}</Text>
+                <Text style={styles.text}>{library.name}</Text>
             </TouchableOpacity>
         </View>
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
     libraryItem: {
         color: 'black',
-        padding: 15,
+        padding: 20,
         marginBottom: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#007bff',
         borderRadius: 10,
     },
-};
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#ccc',
+        textAlign: 'center',
+    }
+});
+
 
 export default LibraryItem;

@@ -3,6 +3,7 @@ import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'rea
 import {getLibraryBooksList} from "../service/RequestsService";
 import { useFocusEffect } from '@react-navigation/native';
 import BookItem from '../components/BookItem.js';
+import {SearchBar} from "react-native-screens";
 
 const BookSearchScreen = ({ navigation, route }) => {
     const { library } = route.params;
@@ -35,13 +36,19 @@ const BookSearchScreen = ({ navigation, route }) => {
         navigation.navigate('Book', {book, libraryId, libraryName})
     }
 
+    const handleBackClick = () => {
+        navigation.goBack()
+    }
+
     return (
-        <View style={styles.bookSearchContainer}>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.backButton} onPress={handleBackClick}>
+                <Text style={styles.text}>Back</Text>
+            </TouchableOpacity>
             <TextInput
                 style={styles.search}
                 onChangeText={(text) => setSearchBook(text)}
-                placeholder="Search"
-                placeholderTextColor="black"
+                placeholder="Search Book"
                 autoCapitalize="none"
                 autoCorrect={false}
             />
@@ -60,34 +67,39 @@ const BookSearchScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    librarySearchContainer: {
-        flex: 1,
-    },
-    bookSearchContainer: {
-        flex: 1,
-    },
-    text: {
-        color: 'black',
+        padding: 20,
+        backgroundColor: '#1a1a1a',
     },
     search: {
         marginHorizontal: 20,
+        marginTop: 20,
+        marginBottom: 10,
         paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderColor: 'black',
+        paddingVertical: 15,
         borderWidth: 1,
-        borderRadius: 8,
-        color: 'black',
+        borderRadius: 10,
+        color: '#ccc',
+        fontSize: 16,
+        borderColor: '#ccc',
+        textAlign: 'center',
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginTop: 10,
     },
-    bookItem: {
-        padding: 15,
-        marginBottom: 10,
-        backgroundColor: 'blue',
-        borderRadius: 10,
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#ccc',
+        textAlign: 'center',
+    },
+    backButton: {
+        backgroundColor: '#333',
+        width: 100,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 8,
+        marginRight: 10,
     },
 })
 
