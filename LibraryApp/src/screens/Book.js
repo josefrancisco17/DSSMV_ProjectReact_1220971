@@ -5,12 +5,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BookScreen = ({ navigation, route }) => {
     const { book, libraryId, libraryName } = route.params;
-    const coverUrl =
-        'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
+    const coverUrl = 'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
 
     const handleCheckOutClick = async () => {
         const userName = await AsyncStorage.getItem('userName');
-        await postCheckOutBook(libraryId, book.isbn, userName);
+        try {
+            await postCheckOutBook(libraryId, book.isbn, userName);
+        } catch (error) {
+            console.log("Book have already been CheckedOut or Library is closed")
+        }
         navigation.navigate('Home');
     };
 

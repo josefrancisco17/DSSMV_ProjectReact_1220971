@@ -31,7 +31,11 @@ const CheckInScreen = ({navigation}) => {
     const handleCheckOutClick = async(checkOut) => {
         let originalString = checkOut.libraryId
         let libraryId = `${originalString.substring(0, 8)}-${originalString.substring(8, 12)}-${originalString.substring(12, 16)}-${originalString.substring(16, 20)}-${originalString.substring(20)}`;
-        await postCheckInBook(libraryId, checkOut.book.isbn, userName)
+        try {
+            await postCheckInBook(libraryId, checkOut.book.isbn, userName)
+        } catch (error) {
+            console.log("Cant checkin because Library is closed")
+        }
         fetchData();
     }
 
