@@ -1,42 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image, Button} from 'react-native';
-import { postCheckOutBook} from '../service/RequestsService';
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
+import { postCheckOutBook } from '../service/RequestsService';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BookScreen = ({ navigation, route }) => {
-    const { book, libraryId, libraryName } = route.params
-    const coverUrl = 'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
+    const { book, libraryId, libraryName } = route.params;
+    const coverUrl =
+        'http://193.136.62.24/v1/' + book.cover.largeUrl.slice('/api/v1/'.length);
 
     const handleCheckOutClick = async () => {
         const userName = await AsyncStorage.getItem('userName');
-        await postCheckOutBook(libraryId, book.isbn, userName)
-        navigation.navigate('Home')
-    }
+        await postCheckOutBook(libraryId, book.isbn, userName);
+        navigation.navigate('Home');
+    };
 
     const handleReviewsClick = async () => {
-        navigation.navigate('Reviews', {book})
-    }
+        navigation.navigate('Reviews', { book });
+    };
 
     const handleGoHome = () => {
-        navigation.replace('Home')
+        navigation.replace('Home');
     };
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
-            <Button onPress={handleGoHome} title="Home"/>
-            <View style={styles.container}>
-                <Image source={{ uri: coverUrl }} style={styles.bookImage} />
+            <View style={styles.headerContainer}>
+                <TouchableOpacity style={styles.homeButton} onPress={handleGoHome}>
+                    <Text style={styles.buttonText}>Home</Text>
+                </TouchableOpacity>
                 <Text style={styles.title}>{book.title}</Text>
-                <Text style={styles.description}>{book.description}</Text>
-                <Text style={styles.details}>Pages: {book.numberOfPages}</Text>
-                <Text style={styles.details}>Author: {book.byStatement}</Text>
-                <Text style={styles.details}>Library: {libraryName}</Text>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText} onPress={handleCheckOutClick}>Check Out</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText} onPress={handleReviewsClick}>Reviews</Text>
-                </TouchableOpacity>
+            </View>
+            <View style={styles.contentContainer}>
+                <View style={styles.imageAndDetailsContainer}>
+                    <Image source={{ uri: coverUrl }} style={styles.bookImage} />
+                </View>
+                <Text style={styles.byStatement}>{book.byStatement}</Text>
+                <View style={styles.detailsContainer}>
+                    <Text style={styles.details}>Pages: {book.numberOfPages} </Text>
+                    <Text style={styles.details}> Library: {libraryName}</Text>
+                </View>
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.description}>{book.description}</Text>
+                </View>
+                <View style={styles.footerContainer}>
+                    <TouchableOpacity style={styles.button} onPress={handleReviewsClick}>
+                        <Text style={styles.buttonText}>Reviews</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={handleCheckOutClick}>
+                        <Text style={styles.buttonText}>Check Out</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ScrollView>
     );
@@ -45,24 +58,54 @@ const BookScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
-        backgroundColor: '#1E1E1E',
+        backgroundColor: '#1a1a1a',
     },
-    container: {
-        flex: 1,
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 16,
+    },
+    contentContainer: {
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 16,
     },
+    imageAndDetailsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginBottom: 16,
+    },
+    detailsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 15,
+        marginBottom: 15,
+    },
+    descriptionContainer: {
+        borderWidth: 1,
+        borderColor: '#007bff',
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 16,
+    },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginTop: 16,
         color: 'white',
+        marginRight: 15,
+    },
+    byStatement: {
+        alignSelf: 'center',
+        fontSize: 16,
+        color: 'white',
+        fontWeight: 'bold',
     },
     description: {
         fontSize: 16,
-        textAlign: 'center',
-        marginVertical: 8,
         color: 'white',
     },
     details: {
@@ -71,19 +114,31 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     bookImage: {
-        width: 200,
-        height: 300,
+        width: 250,
+        height: 400,
         borderRadius: 8,
-        marginBottom: 16,
+    },
+    footerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
     },
     button: {
-        backgroundColor: '#3498DB',
+        backgroundColor: '#007bff',
         padding: 12,
         borderRadius: 8,
-        marginTop: 16,
+        marginVertical: 8,
+        width: '48%',
+    },
+    homeButton: {
+        padding: 20,
+        borderRadius: 8,
+        marginVertical: 8,
+        backgroundColor: '#333',
     },
     buttonText: {
         color: 'white',
+        fontWeight: 'bold',
         fontSize: 16,
         textAlign: 'center',
     },
