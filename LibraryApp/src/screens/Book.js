@@ -34,7 +34,7 @@ const BookScreen = ({ navigation, route }) => {
                 <Text style={styles.title}>{book.title}</Text>
             </View>
             <View style={styles.contentContainer}>
-                <View style={styles.imageAndDetailsContainer}>
+                <View style={styles.imageContainer}>
                     <Image source={{ uri: coverUrl }} style={styles.bookImage} />
                 </View>
                 <Text style={styles.byStatement}>{book.byStatement}</Text>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 16,
     },
-    imageAndDetailsContainer: {
+    imageContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: 'white',
-        marginRight: 15,
     },
     byStatement: {
         alignSelf: 'center',
