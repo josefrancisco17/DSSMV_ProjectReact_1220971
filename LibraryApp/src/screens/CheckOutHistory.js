@@ -32,7 +32,8 @@ const CheckOutHistoryScreen = ({navigation}) => {
     }
 
     return (
-        <View style={styles.screen}>
+        <View style={styles.container}>
+            <Text style={styles.title}>Your Check Out History</Text>
             <FlatList
                 style={styles.flatList}
                 data={history}
@@ -46,17 +47,24 @@ const CheckOutHistoryScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#1a1a1a',
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginTop: 20,
+        width: '95%',
     },
     text: {
         color: 'black'
+    },
+    title: {
+        marginTop: 30,
+        color: 'white',
+        fontSize: 22,
+        fontWeight: 'bold',
     },
 });
 

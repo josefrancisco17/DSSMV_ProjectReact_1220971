@@ -25,7 +25,7 @@ const MainScreen = ({navigation}) => {
     }, []);
 
     return (
-        <ActivityIndicator size="large" color="blue" style={styles.activityIndicator}/>
+        <ActivityIndicator size="large" color="white" style={styles.activityIndicator}/>
     )
 }
 

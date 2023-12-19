@@ -25,9 +25,7 @@ const BookItem = ({ review }) => {
             <Text style={styles.title}>{review.reviewer}</Text>
             <Text style={styles.bookTitle}>{book.title}</Text>
             <Text style={styles.reviewText}>{review.review}</Text>
-            <Text style={[styles.recommendedText, { color: review.recommended ? 'green' : 'darkred', }]}>
-                Recommended: {review.recommended.toString()}
-            </Text>
+            <Text style={[styles.recommendedText, { color: review.recommended ? 'green' : 'darkred', }]}> Recommended: {review.recommended.toString()} </Text>
             <Text style={styles.dateText}>{formatTimestamp(review.createdDate)}</Text>
         </View>
     );
