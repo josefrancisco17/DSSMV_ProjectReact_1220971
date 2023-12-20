@@ -19,12 +19,12 @@ const LoginScreen = ({navigation}) => {
     }
 
     return (
-        <View style={styles.screen}>
+        <View style={styles.container}>
             <View style={styles.card}>
                 <Text style={styles.title}>Library App</Text>
                 <TextInput
                     placeholder="User Name"
-                    placeholderTextColor="black"
+                    placeholderTextColor="white"
                     value={inputText}
                     onChangeText={text => setInputText(text)}
                     style={styles.inputText}
@@ -38,13 +38,14 @@ const LoginScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#1a1a1a',
     },
     card: {
-        backgroundColor: '#fff',
+        backgroundColor: '#333',
         borderRadius: 10,
         padding: 20,
         shadowColor: '#000',
@@ -58,22 +59,22 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: 'black',
+        color: 'white',
     },
     inputText: {
         width: 200,
         height: 40,
-        borderColor: 'darkgray',
+        borderColor: '#ccc',
         borderWidth: 2,
         borderRadius: 5,
         padding: 10,
         marginBottom: 20,
-        color: 'black',
+        color: 'white',
     },
     button: {
         width: 200,
         height: 40,
-        backgroundColor: 'blue',
+        backgroundColor: '#007bff',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
