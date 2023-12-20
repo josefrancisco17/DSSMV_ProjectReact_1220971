@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyReviewsScreen from "./MyReviews";
 import CheckOutHistory from "./CheckOutHistory";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,8 +23,20 @@ const ProfileScreen = ({ navigation }) => {
                 },
             }}
         >
-            <Tab.Screen name="MyReviews" component={MyReviewsScreen} />
-            <Tab.Screen name="CheckOutHistory" component={CheckOutHistory} />
+            <Tab.Screen
+                name="MyReviews"
+                component={MyReviewsScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => <Icon name="star" color={color} size={size} />,
+                }}
+            />
+            <Tab.Screen
+                name="CheckOutHistory"
+                component={CheckOutHistory}
+                options={{
+                    tabBarIcon: ({ color, size }) => <Icon name="history" color={color} size={size} />,
+                }}
+            />
         </Tab.Navigator>
     );
 };
