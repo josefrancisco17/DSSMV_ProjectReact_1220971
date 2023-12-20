@@ -25,7 +25,7 @@ const FeedScreen = ({navigation}) => {
     }, []);
 
     return (
-        <View style={styles.screen}>
+        <View style={styles.container}>
             <FlatList
                 style={styles.flatList}
                 data={libraries}
@@ -40,8 +40,9 @@ const FeedScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
+        backgroundColor: '#1a1a1a',
     },
     text: {
         color: 'black'

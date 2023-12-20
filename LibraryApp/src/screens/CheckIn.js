@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getCheckOutsList, postCheckInBook} from "../service/RequestsService";
-import CheckOutItem from "../components/CheckOutItem";
-import {check} from "react-native-permissions";
+import { getCheckOutsList, postCheckInBook } from '../service/RequestsService';
+import CheckOutItem from '../components/CheckOutItem';
+import { check } from 'react-native-permissions';
 
-const CheckInScreen = ({navigation}) => {
-    const [userName, setUserName] = useState("")
-    const [checkedOutBooksList, setCheckedOutBooksList] = useState([])
+const CheckInScreen = ({ navigation }) => {
+    const [userName, setUserName] = useState('');
+    const [checkedOutBooksList, setCheckedOutBooksList] = useState([]);
 
     useFocusEffect(
         React.useCallback(() => {
-            fetchData()
+            fetchData();
         }, [])
     );
 
@@ -28,27 +28,35 @@ const CheckInScreen = ({navigation}) => {
         }
     };
 
-    const handleCheckOutClick = async(checkOut) => {
-        let originalString = checkOut.libraryId
-        let libraryId = `${originalString.substring(0, 8)}-${originalString.substring(8, 12)}-${originalString.substring(12, 16)}-${originalString.substring(16, 20)}-${originalString.substring(20)}`;
-        await postCheckInBook(libraryId, checkOut.book.isbn, userName)
+    const handleCheckOutClick = async (checkOut) => {
+        let originalString = checkOut.libraryId;
+        let libraryId = `${originalString.substring(0, 8)}-${originalString.substring(8, 12)}-${originalString.substring(
+            12,
+            16
+        )}-${originalString.substring(16, 20)}-${originalString.substring(20)}`;
+        try {
+            await postCheckInBook(libraryId, checkOut.book.isbn, userName);
+        } catch (error) {
+            console.log("Can't check in because the library is closed");
+        }
         fetchData();
-    }
+    };
 
-    const handleLongPress = async(checkOut) => {
-        const book = checkOut.book
-        const libraryId = checkOut.libraryId
-        const libraryName = checkOut.libraryName
-        navigation.navigate('Book', {book, libraryId, libraryName})
-    }
+    const handleLongPress = async (checkOut) => {
+        const book = checkOut.book;
+        const libraryId = checkOut.libraryId;
+        const libraryName = checkOut.libraryName;
+        navigation.navigate('Book', { book, libraryId, libraryName });
+    };
 
     return (
-        <View style={styles.screen}>
+        <View style={styles.container}>
+            <Text style={styles.title}>Select a Book to Check In</Text>
             <FlatList
                 style={styles.flatList}
                 data={checkedOutBooksList}
-                renderItem={({item}) => (
-                    <CheckOutItem checkOut={item} handleClick={() => handleCheckOutClick(item)} handleLongPress={() => handleLongPress(item)}/>
+                renderItem={({ item }) => (
+                    <CheckOutItem checkOut={item} handleClick={() => handleCheckOutClick(item)} handleLongPress={() => handleLongPress(item)} />
                 )}
                 keyExtractor={(checkOut) => checkOut.id.toString()}
             />
@@ -57,17 +65,21 @@ const CheckInScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#1a1a1a',
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginTop: 20,
+        width: '95%',
     },
-    text: {
-        color: 'black'
+    title: {
+        marginTop: 30,
+        color: 'white',
+        fontSize: 22,
+        fontWeight: 'bold',
     },
 });
 

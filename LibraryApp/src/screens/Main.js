@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {ActivityIndicator, StyleSheet, View} from "react-native";
+import React, { useEffect } from 'react';
+import {ActivityIndicator, StyleSheet, Text, View} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Geolocation from "@react-native-community/geolocation";
 
-const MainScreen = ({navigation}) => {
-    const getPermissions = async() => {
+const MainScreen = ({ navigation }) => {
+    const getPermissions = async () => {
         Geolocation.requestAuthorization();
     }
 
@@ -25,16 +25,28 @@ const MainScreen = ({navigation}) => {
     }, []);
 
     return (
-        <ActivityIndicator size="large" color="blue" style={styles.activityIndicator}/>
+        <View style={styles.container}>
+            <Text style={styles.text}>Loading</Text>
+            <ActivityIndicator size="large" color="white" style={styles.activityIndicator} />
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    activityIndicator: {
+    container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-    }
+        backgroundColor: '#1a1a1a',
+    },
+    activityIndicator: {
+        marginTop: 20,
+    },
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 24,
+    },
 })
 
 export default MainScreen;

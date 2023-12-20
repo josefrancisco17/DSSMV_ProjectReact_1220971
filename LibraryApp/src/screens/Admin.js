@@ -23,25 +23,25 @@ const AdminScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={logOut} style={styles.logoutButton}>
-                <Text style={styles.buttonText}>Logout</Text>
+                <Text style={styles.text}>Logout</Text>
             </TouchableOpacity>
 
-            <Text style={styles.headerText}>Admin Menu</Text>
+            <Text style={styles.title}>Admin Menu</Text>
 
             <View style={styles.sectionContainer}>
-                <Text style={styles.sectionText}>Manage Libraries</Text>
+                <Text style={styles.text}>Manage Libraries</Text>
                 <TouchableOpacity style={styles.button} onPress={handleCreateLibrary}>
-                    <Text style={styles.buttonText}>Create Library</Text>
+                    <Text style={styles.text}>Create Library</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={handleDeleteLibrary}>
-                    <Text style={styles.buttonText}>Delete Library</Text>
+                    <Text style={styles.text}>Delete Library</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.sectionContainer}>
-                <Text style={styles.sectionText}>Manage Books</Text>
+                <Text style={styles.text}>Manage Books</Text>
                 <TouchableOpacity style={styles.button} onPress={handleCreateBook}>
-                    <Text style={styles.buttonText}>Create Book</Text>
+                    <Text style={styles.text}>Create Book</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -52,41 +52,39 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#f0f0f0',
-    },
-    logoutButton: {
-        backgroundColor: 'blue',
-        alignSelf: 'flex-end',
-        padding: 10,
-        borderRadius: 8,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-    headerText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginTop: 20,
-        marginBottom: 10,
-        color: '#333',
+        backgroundColor: '#1a1a1a',
     },
     sectionContainer: {
         marginBottom: 20,
     },
-    sectionText: {
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginTop: 50,
+        marginBottom: 85,
+        color: '#ccc',
+        alignSelf: 'center',
+    },
+    text: {
         fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 10,
-        color: '#555',
+        color: '#ccc',
+        textAlign: 'center',
     },
     button: {
+        color: 'black',
+        padding: 20,
+        marginTop: 20,
         backgroundColor: '#007bff',
+        borderRadius: 10,
+    },
+    logoutButton: {
+        color: 'black',
+        alignSelf: 'flex-end',
         padding: 15,
-        alignItems: "center",
-        borderRadius: 8,
         marginBottom: 10,
+        backgroundColor: '#333',
+        borderRadius: 10,
     },
 })
 

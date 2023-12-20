@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
-import {deleteLibrary, getLibrariesList} from "../service/RequestsService";
+import React, { useState } from 'react';
+import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+import { deleteLibrary, getLibrariesList } from "../service/RequestsService";
 import LibraryItem from "../components/LibraryItem";
-import {useFocusEffect} from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 
 const DeleteLibraryScreen = ({ navigation }) => {
     const [searchLibrary, setSearchLibrary] = useState('');
@@ -31,12 +31,12 @@ const DeleteLibraryScreen = ({ navigation }) => {
 
     const handleLibraryClick = async (library) => {
         try {
-            const libraryId = library.id
-            await deleteLibrary(libraryId)
+            const libraryId = library.id;
+            await deleteLibrary(libraryId);
         } catch (error) {
-            throw error
+            throw error;
         }
-        navigation.navigate('Admin')
+        navigation.navigate('Admin');
     };
 
     return (
@@ -46,15 +46,15 @@ const DeleteLibraryScreen = ({ navigation }) => {
                     style={styles.search}
                     onChangeText={(text) => setSearchLibrary(text)}
                     placeholder="Search"
-                    placeholderTextColor="black"
+                    placeholderTextColor="white"
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
                 <FlatList
                     style={styles.flatList}
                     data={filteredLibrariesList}
-                    renderItem={({item}) => (
-                        <LibraryItem library={item} handleClick={() => handleLibraryClick(item)}/>
+                    renderItem={({ item }) => (
+                        <LibraryItem library={item} handleClick={() => handleLibraryClick(item)} />
                     )}
                     keyExtractor={(library) => library.id.toString()}
                 />
@@ -63,38 +63,30 @@ const DeleteLibraryScreen = ({ navigation }) => {
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#1a1a1a',
     },
     librarySearchContainer: {
         flex: 1,
     },
-    bookSearchContainer: {
-        flex: 1,
-    },
-    text: {
-        color: 'black',
-    },
     search: {
+        marginVertical: 20,
         marginHorizontal: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderColor: 'black',
+        borderColor: 'white',
         borderWidth: 1,
         borderRadius: 8,
-        color: 'black',
+        color: 'white',
+        marginBottom: 10,
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginVertical: 20,
+        alignSelf: 'center',
+        width: '90%',
     },
-    bookItem: {
-        padding: 15,
-        marginBottom: 10,
-        backgroundColor: 'blue',
-        borderRadius: 10,
-    },
-};
+});
 
-export default DeleteLibraryScreen
+export default DeleteLibraryScreen;

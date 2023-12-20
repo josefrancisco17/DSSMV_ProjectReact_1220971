@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TextInput, View, FlatList, Alert, TouchableOpacity, Text} from 'react-native';
+import {TextInput, View, FlatList, Alert, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import {getLibrariesList} from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';
@@ -35,60 +35,47 @@ const CheckOutScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.librarySearchContainer}>
-                <TextInput
-                    style={styles.search}
-                    onChangeText={(text) => setSearchLibrary(text)}
-                    placeholder="Search"
-                    placeholderTextColor="black"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                />
-                <FlatList
-                    style={styles.flatList}
-                    data={filteredLibrariesList}
-                    renderItem={({item}) => (
-                        <LibraryItem library={item} handleClick={() => handleLibraryClick(item)}/>
-                    )}
-                    keyExtractor={(library) => library.id.toString()}
-                />
-            </View>
+            <TextInput
+                style={styles.search}
+                onChangeText={(text) => setSearchLibrary(text)}
+                placeholder="Search Library"
+                autoCapitalize="none"
+                autoCorrect={false}
+            />
+            <FlatList
+                style={styles.flatList}
+                data={filteredLibrariesList}
+                renderItem={({item}) => (
+                    <LibraryItem library={item} handleClick={() => handleLibraryClick(item)}/>
+                )}
+                keyExtractor={(library) => library.id.toString()}
+            />
         </View>
     );
 };
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    librarySearchContainer: {
-        flex: 1,
-    },
-    bookSearchContainer: {
-        flex: 1,
-    },
-    text: {
-        color: 'black',
+        padding: 20,
+        backgroundColor: '#1a1a1a',
     },
     search: {
         marginHorizontal: 20,
+        marginTop: 20,
+        marginBottom: 10,
         paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderColor: 'black',
+        paddingVertical: 15,
         borderWidth: 1,
-        borderRadius: 8,
-        color: 'black',
+        borderRadius: 10,
+        color: '#ccc',
+        fontSize: 16,
+        borderColor: '#ccc',
+        textAlign: 'center',
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginTop: 10,
     },
-    bookItem: {
-        padding: 15,
-        marginBottom: 10,
-        backgroundColor: 'blue',
-        borderRadius: 10,
-    },
-};
+});
 
 export default CheckOutScreen;

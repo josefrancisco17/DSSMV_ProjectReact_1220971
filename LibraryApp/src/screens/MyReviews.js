@@ -28,9 +28,10 @@ const MyReviewsScreen = ({navigation}) => {
     };
 
     return (
-        <View style={styles.screen}>
+        <View style={styles.container}>
+            <Text style={styles.title}>Your Reviews</Text>
             {isLoading ? (
-                <ActivityIndicator size="large" color="blue" style={styles.activityIndicator} />
+                <ActivityIndicator size="large" color="white" style={styles.activityIndicator} />
             ) : (
                 <FlatList
                     style={styles.flatList}
@@ -44,17 +45,21 @@ const MyReviewsScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    text: {
-        color: 'black'
+        backgroundColor: '#1a1a1a',
     },
     flatList: {
-        border: 2,
-        borderWidth: 2,
+        marginTop: 20,
+        width: '95%',
+    },
+    title: {
+        marginVertical: 30,
+        color: 'white',
+        fontSize: 22,
+        fontWeight: 'bold',
     },
 });
 

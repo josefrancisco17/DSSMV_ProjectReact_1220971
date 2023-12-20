@@ -1,34 +1,44 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyReviewsScreen from "./MyReviews";
 import CheckOutHistory from "./CheckOutHistory";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({ navigation }) => {
     const logOut = async () => {
         await AsyncStorage.removeItem('userName');
         navigation.navigate('Login');
     };
+
     return (
-        <Tab.Navigator screenOptions={{headerShown: false}}>
-            <Tab.Screen name="MyReviews" component={MyReviewsScreen} />
-            <Tab.Screen name="CheckOutHistory" component={CheckOutHistory} />
+        <Tab.Navigator
+            screenOptions={{
+                headerShown: false,
+                tabBarStyle: {
+                    backgroundColor: '#1c1c1c',
+                    borderColor: '#1c1c1c',
+                },
+            }}
+        >
+            <Tab.Screen
+                name="MyReviews"
+                component={MyReviewsScreen}
+                options={{
+                    tabBarIcon: ({ color, size }) => <Icon name="star" color={color} size={size} />,
+                }}
+            />
+            <Tab.Screen
+                name="CheckOutHistory"
+                component={CheckOutHistory}
+                options={{
+                    tabBarIcon: ({ color, size }) => <Icon name="history" color={color} size={size} />,
+                }}
+            />
         </Tab.Navigator>
     );
 };
-
-const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        color: 'black'
-    },
-});
 
 export default ProfileScreen;

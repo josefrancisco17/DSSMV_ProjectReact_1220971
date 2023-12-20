@@ -1,19 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Alert, FlatList, StyleSheet, Text, ScrollView, TouchableOpacity, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ReviewItem from "../components/ReviewItem.js";
-import {getCheckOutsList, getLibraryBooksList, getRecommendedCount, getReviewsList} from "../service/RequestsService";
-import {useFocusEffect} from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
+import ReviewItem from "../components/ReviewItem";
+import {
+    getCheckOutsList,
+    getLibraryBooksList,
+    getRecommendedCount,
+    getReviewsList
+} from "../service/RequestsService";
 
 const ReviewsScreen = ({ navigation, route }) => {
-    const { book } = route.params
-    const [userName, setUserName] = useState("")
-    const [recommendCount, setRecommendCount] = useState("")
-    const [reviews, setReviews] = useState([])
+    const { book } = route.params;
+    const [userName, setUserName] = useState("");
+    const [recommendCount, setRecommendCount] = useState("");
+    const [reviews, setReviews] = useState([]);
 
     useFocusEffect(
         React.useCallback(() => {
-            fetchData()
+            fetchData();
         }, [])
     );
 
@@ -22,46 +27,47 @@ const ReviewsScreen = ({ navigation, route }) => {
             const user = await AsyncStorage.getItem('userName');
             setUserName(user);
 
-            const recommendNum = await getRecommendedCount(book.isbn)
-            setRecommendCount(recommendNum)
+            const recommendNum = await getRecommendedCount(book.isbn);
+            setRecommendCount(recommendNum);
 
-            const bookReviews = await getReviewsList(book.isbn)
-            setReviews(bookReviews)
+            const bookReviews = await getReviewsList(book.isbn);
+            setReviews(bookReviews);
         } catch (error) {
             console.error('Error in fetchData:', error);
         }
     };
 
     const handleMakeReview = async () => {
-        let reviewId = null
+        let reviewId = null;
         for (let i = 0; i < reviews.length; i++) {
-            const review = reviews[i]
+            const review = reviews[i];
             if (review.reviewer === userName) {
-                reviewId = review.id
-                break
+                reviewId = review.id;
+                break;
             }
         }
-        navigation.navigate('MakeReview', {book, reviewId})
+        navigation.navigate('MakeReview', { book, reviewId });
     };
 
     const handleGoHome = () => {
-        navigation.replace('Home')
+        navigation.replace('Home');
     };
 
     return (
-        <View style={styles.screen}>
-            <TouchableOpacity style={styles.button}>
-                <Text onPress={handleMakeReview}>Review</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <Text onPress={handleGoHome}>Home</Text>
-            </TouchableOpacity>
-            <Text style={styles.text}>Recommend Count: {recommendCount}</Text>
+        <View style={styles.container}>
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.button} onPress={handleGoHome}>
+                    <Text style={styles.buttonText}>Home</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={handleMakeReview}>
+                    <Text style={styles.buttonText}>Review</Text>
+                </TouchableOpacity>
+            </View>
+            <Text style={styles.recommendedCountText}>Recommend Count: {recommendCount}</Text>
             <FlatList
-                style={styles.flatList}
                 data={reviews}
-                renderItem={({item}) => (
-                    <ReviewItem review={item}/>
+                renderItem={({ item }) => (
+                    <ReviewItem review={item} />
                 )}
                 keyExtractor={(bookReview) => bookReview.id.toString()}
             />
@@ -70,24 +76,40 @@ const ReviewsScreen = ({ navigation, route }) => {
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#1a1a1a',
+        padding: 16,
     },
-    text: {
-        color: 'black'
-    },
-    flatList: {
-        border: 2,
-        borderWidth: 2,
+    buttonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 16,
     },
     button: {
+        flex: 1,
         padding: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#007bff',
         alignItems: 'center',
         justifyContent: 'center',
-    }
+        marginHorizontal: 8,
+        borderRadius: 8,
+    },
+    buttonText: {
+        color: '#ccc',
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    text: {
+        color: '#ccc',
+        marginBottom: 8,
+    },
+    recommendedCountText: {
+        alignSelf: 'center',
+        marginBottom: 8,
+        fontSize: 20,
+        fontWeight: "bold",
+    },
 });
 
 export default ReviewsScreen;
