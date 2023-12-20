@@ -45,7 +45,7 @@ const FeedItem = ({ navigation, library }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#3498db',
+        backgroundColor: '#007bff',
         margin: 10,
         padding: 15,
         borderRadius: 10,

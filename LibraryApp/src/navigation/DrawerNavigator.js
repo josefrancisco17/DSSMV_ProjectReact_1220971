@@ -50,7 +50,11 @@ const DrawerNavigator = () => {
         <Drawer.Navigator
             initialRouteName="Home"
             drawerContent={(props) => <CustomDrawerContent {...props} />}
-            screenOptions={{ drawerActiveTintColor: 'white', drawerInactiveTintColor: 'grey', }}
+            screenOptions={{
+                drawerActiveTintColor: 'white',
+                drawerInactiveTintColor: 'grey',
+                headerStyle: styles.headerStyle,
+                headerTintColor: 'white',}}
         >
             <Drawer.Screen name="Feed" component={FeedScreen} />
             <Drawer.Screen name="CheckOut" component={CheckOutScreen} />
@@ -61,12 +65,15 @@ const DrawerNavigator = () => {
 };
 
 const styles = {
+    headerStyle: {
+        backgroundColor: '#1a1a1a',
+    },
     drawerMenu: {
         backgroundColor: '#1a1a1a',
     },
     userDetails: {
         alignItems: 'center',
-        marginBottom: 50,
+        marginBottom: 10,
         padding: 10,
         backgroundColor: '#333',
     },

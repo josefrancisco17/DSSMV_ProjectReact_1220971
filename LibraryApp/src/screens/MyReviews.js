@@ -29,7 +29,7 @@ const MyReviewsScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Your Check Out History</Text>
+            <Text style={styles.title}>Your Reviews</Text>
             {isLoading ? (
                 <ActivityIndicator size="large" color="white" style={styles.activityIndicator} />
             ) : (
