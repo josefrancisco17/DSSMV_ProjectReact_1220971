@@ -29,7 +29,7 @@ const FeedItem = ({ navigation, library }) => {
             <Text style={styles.libraryName} onPress={() => handleLibraryClick(library)}>
                 {library.name}
             </Text>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollView}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
                 {books.map((item) => (
                     <TouchableOpacity key={item.isbn} onPress={() => handleBookClick(item)}>
                         <Image
@@ -45,26 +45,20 @@ const FeedItem = ({ navigation, library }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#007bff',
+        backgroundColor: '#9784',
         margin: 10,
         padding: 15,
         borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
     },
     scrollView: {
         marginTop: 5,
+        flexGrow: 1,
     },
     bookImage: {
-        width: 100,
-        height: 100,
+        width: 110,
+        height: 155,
         marginRight: 10,
+        borderRadius: 8,
     },
     libraryName: {
         color: '#fff',
