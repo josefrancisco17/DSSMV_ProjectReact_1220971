@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Switch, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, Switch, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getCheckOutsList, getReviewsList, postReviewBook, updateReviewBook} from "../service/RequestsService";
-import {useFocusEffect} from "@react-navigation/native";
+import { postReviewBook, updateReviewBook } from "../service/RequestsService";
+import { useFocusEffect } from "@react-navigation/native";
 
 const MakeReviewScreen = ({ navigation, route }) => {
-    const {book, reviewId} = route.params
-    const [userName, setUserName] = useState("")
+    const { book, reviewId } = route.params;
+    const [userName, setUserName] = useState("");
     const [reviewText, setReviewText] = useState("");
     const [recommended, setRecommended] = useState(false);
 
     useFocusEffect(
         React.useCallback(() => {
-            fetchData()
+            fetchData();
         }, [])
     );
 
@@ -27,66 +27,119 @@ const MakeReviewScreen = ({ navigation, route }) => {
 
     const handleSubmitClick = async () => {
         if (reviewId === null) {
-            await postReviewBook(book.isbn, userName , reviewText, recommended.toString())
+            await postReviewBook(book.isbn, userName, reviewText, recommended.toString());
         } else {
-            await updateReviewBook(book.isbn, userName, reviewText, recommended.toString(), reviewId)
+            await updateReviewBook(book.isbn, userName, reviewText, recommended.toString(), reviewId);
         }
-        navigation.replace('Reviews', {book})
-    }
+        navigation.replace('Reviews', { book });
+    };
+
+    const handleReturnClick = async () => {
+        navigation.replace('Reviews', { book });
+    };
 
     const toggleSwitch = () => {
-        setRecommended(previousState => !previousState)
-    }
+        setRecommended(previousState => !previousState);
+    };
 
     return (
-        <View style={styles.screen}>
-            <Text style={styles.text}>Make a review for {book.title}</Text>
-            <TextInput
-                placeholder="Review"
-                placeholderTextColor="black"
-                value={reviewText}
-                onChangeText={text => setReviewText(text)}
-                style={styles.reviewText}
-            />
-            <Switch
-                trackColor={{false: '#767577', true: '#81b0ff'}}
-                thumbColor={recommended ? '#f5dd4b' : '#f4f3f4'}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={recommended}
-            />
-            <TouchableOpacity style={styles.submitButton}>
-                <Text onPress={handleSubmitClick}>Submit</Text>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.returnButton} onPress={handleReturnClick}>
+                <Text style={styles.buttonText}>Return</Text>
             </TouchableOpacity>
-        </View>
 
+            <View style={styles.mainContainer}>
+                <Text style={styles.heading}>Make a Review for {book.title}</Text>
+
+                <TextInput
+                    placeholder="Your Review"
+                    placeholderTextColor="#999"
+                    value={reviewText}
+                    onChangeText={text => setReviewText(text)}
+                    style={styles.reviewText}
+                    multiline={true}
+                />
+
+                <View style={styles.switchContainer}>
+                    <Text style={styles.switchLabel}>Recommend:</Text>
+                    <Switch
+                        thumbColor={recommended ? 'green' : 'red'}
+                        onValueChange={toggleSwitch}
+                        value={recommended}
+                    />
+                </View>
+
+                <TouchableOpacity style={styles.submitButton} onPress={handleSubmitClick}>
+                    <Text style={styles.buttonText}>Submit</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#1a1a1a',
+        paddingHorizontal: 20,
     },
-    text: {
-        color: 'black'
+    heading: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: 'white',
+    },
+    reviewText: {
+        width: '100%',
+        height: 120,
+        borderColor: '#333',
+        borderWidth: 2,
+        borderRadius: 8,
+        padding: 10,
+        marginBottom: 20,
+        color: 'white',
+    },
+    switchContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    switchLabel: {
+        fontSize: 16,
+        marginRight: 10,
+        color: 'white',
     },
     submitButton: {
-        padding: 10,
-        backgroundColor: 'blue',
+        backgroundColor: '#007bff',
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    reviewText: {
-        width: 200,
-        height: 40,
-        borderColor: 'darkgray',
-        borderWidth: 2,
-        borderRadius: 5,
-        padding: 10,
-        marginBottom: 20,
-        color: 'black',
+    returnButton: {
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        padding: 20,
+        borderRadius: 8,
+        marginVertical: 8,
+        backgroundColor: '#333',
+    },
+    mainContainer: {
+        width: 375,
+        height: 400,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#333',
+        borderRadius: 12,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
 });
 

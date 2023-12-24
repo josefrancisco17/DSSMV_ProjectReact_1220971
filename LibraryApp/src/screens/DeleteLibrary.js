@@ -46,7 +46,7 @@ const DeleteLibraryScreen = ({ navigation }) => {
                     style={styles.search}
                     onChangeText={(text) => setSearchLibrary(text)}
                     placeholder="Search"
-                    placeholderTextColor="white"
+                    placeholderTextColor="#ccc"
                     autoCapitalize="none"
                     autoCorrect={false}
                 />
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderColor: 'white',
+        borderColor: '#ccc',
         borderWidth: 1,
         borderRadius: 8,
         color: 'white',

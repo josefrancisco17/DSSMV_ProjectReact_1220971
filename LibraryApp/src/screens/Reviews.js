@@ -96,12 +96,12 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     buttonText: {
-        color: '#ccc',
+        color: 'white',
         fontSize: 20,
         fontWeight: "bold",
     },
     text: {
-        color: '#ccc',
+        color: 'white',
         marginBottom: 8,
     },
     recommendedCountText: {

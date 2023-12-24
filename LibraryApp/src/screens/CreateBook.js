@@ -45,8 +45,15 @@ const CreateBookScreen = ({ navigation }) => {
         navigation.navigate('Admin');
     };
 
+    const handleReturn = async () => {
+        navigation.navigate('Admin');
+    };
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity style={styles.returnButton} onPress={handleReturn}>
+                <Text style={styles.buttonText}>Return</Text>
+            </TouchableOpacity>
             <View style={styles.librarySearchContainer}>
                 <TextInput
                     style={styles.search}
@@ -110,10 +117,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 10,
         marginBottom: 20,
+        marginTop: 10,
     },
     text: {
         color: 'white',
         marginVertical: 20,
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     input: {
         color: 'white',
@@ -122,6 +132,7 @@ const styles = StyleSheet.create({
         padding: 25,
     },
     search: {
+        marginTop: 60,
         marginHorizontal: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
@@ -145,9 +156,17 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#ccc',
+        color: 'white',
         textAlign: 'center',
-    }
+    },
+    returnButton: {
+        position: 'absolute',
+        top: 10,
+        left: 20,
+        padding: 15,
+        borderRadius: 8,
+        backgroundColor: '#333',
+    },
 });
 
 export default CreateBookScreen;

@@ -41,20 +41,20 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'white',
         marginBottom: 10,
         textAlign: 'center',
     },
     bookTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: 'white',
         marginBottom: 10,
         textAlign: 'center',
     },
     reviewText: {
         fontSize: 18,
-        color: '#FFFFFF',
+        color: 'white',
         marginBottom: 10,
         textAlign: 'center',
     },

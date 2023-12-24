@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 50,
         marginBottom: 85,
-        color: '#ccc',
+        color: 'white',
         alignSelf: 'center',
     },
     text: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#ccc',
+        color: 'white',
         textAlign: 'center',
     },
     button: {
