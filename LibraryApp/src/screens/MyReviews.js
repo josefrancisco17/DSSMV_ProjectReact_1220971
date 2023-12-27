@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         marginVertical: 30,
         color: 'white',
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 

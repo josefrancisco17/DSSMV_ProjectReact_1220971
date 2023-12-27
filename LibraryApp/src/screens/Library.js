@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 30,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginTop: 16,
         color: 'white',
     },
     subtitle: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginTop: 10,
         marginBottom: 10,
         color: '#007bff',
@@ -60,11 +60,13 @@ const styles = StyleSheet.create({
     infoLabel: {
         color: '#007bff',
         fontSize: 16,
+        fontFamily: 'Ubuntu-Regular',
         marginBottom: 5,
     },
     infoText: {
         color: 'white',
         fontSize: 18,
+        fontFamily: 'Ubuntu-Regular',
         marginBottom: 10,
     },
     button: {
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         textAlign: 'center',
     },
 });

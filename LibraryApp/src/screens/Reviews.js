@@ -98,10 +98,11 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 20,
-        fontWeight: "bold",
+        fontFamily: 'Ubuntu-Bold',
     },
     text: {
         color: 'white',
+        fontFamily: 'Ubuntu-Regular',
         marginBottom: 8,
     },
     recommendedCountText: {

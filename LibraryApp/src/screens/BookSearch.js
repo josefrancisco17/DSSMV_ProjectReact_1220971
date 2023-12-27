@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: '#ccc',
         fontSize: 16,
+        fontFamily: 'Ubuntu-Regular',
         borderColor: '#ccc',
         textAlign: 'center',
     },
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: '#ccc',
         textAlign: 'center',
     },

@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: 'white',
         marginBottom: 10,
         textAlign: 'center',
     },
     bookTitle: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: 'white',
         marginBottom: 10,
         textAlign: 'center',
@@ -55,16 +55,20 @@ const styles = StyleSheet.create({
     reviewText: {
         fontSize: 18,
         color: 'white',
+        fontFamily: 'Ubuntu-Regular',
         marginBottom: 10,
+        lineHeight: 25,
         textAlign: 'center',
     },
     recommendedText: {
         fontSize: 16,
         marginBottom: 10,
+        fontFamily: 'Ubuntu-Regular',
         textAlign: 'center',
     },
     dateText: {
         fontSize: 14,
+        fontFamily: 'Ubuntu-Regular',
         color: '#B0BEC5',
         textAlign: 'center',
     },

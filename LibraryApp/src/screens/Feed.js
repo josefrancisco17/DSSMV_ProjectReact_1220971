@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#1a1a1a',
     },
     text: {
-        color: 'black'
+        color: 'black',
+        fontFamily: 'Ubuntu-Regular',
     },
 });
 

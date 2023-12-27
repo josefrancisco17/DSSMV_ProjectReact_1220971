@@ -11,7 +11,7 @@
     "axios": "^1.6.2",
     "feather-icons": "^4.29.1",
     "react": "18.2.0",
-    "react-native": "0.73.1",
+    "react-native": "^0.73.1",
     "react-native-feather": "^1.1.2",
     "react-native-gesture-handler": "^2.14.0",
     "react-native-permissions": "^4.0.1",

@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginBottom: 20,
         color: 'white',
     },
@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontFamily: 'Ubuntu-Bold',
     },
 })
 

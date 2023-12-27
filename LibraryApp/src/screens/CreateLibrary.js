@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
         marginVertical: 10,
     },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
     },
     returnButton: {

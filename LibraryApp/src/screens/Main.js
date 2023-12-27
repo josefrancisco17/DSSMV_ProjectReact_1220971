@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 24,
     },
 })

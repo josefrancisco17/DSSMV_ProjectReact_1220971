@@ -51,7 +51,7 @@ const CheckInScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Select a Book to Check In</Text>
+            <Text style={styles.title}>Select a Book</Text>
             <FlatList
                 style={styles.flatList}
                 data={checkedOutBooksList}
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: 'white',
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 

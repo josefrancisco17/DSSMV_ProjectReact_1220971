@@ -31,8 +31,8 @@ const CustomDrawerContent = (props) => {
 
     return (
         <DrawerContentScrollView {...props} style={styles.drawerMenu}>
-            <ImageBackground source={require('../assets/black-gradient.png')} style={styles.userDetails}>
-                <Image source={require('../assets/user.png')} style={styles.userImage} />
+            <ImageBackground source={require('../../assets/images/black-gradient.png')} style={styles.userDetails}>
+                <Image source={require('../../assets/images/user.png')} style={styles.userImage} />
                 <View style={styles.userInfo}>
                     <Text style={styles.userNameText}>{userName}</Text>
                     <Text style={styles.weatherText}>{weatherStatement}</Text>
@@ -117,12 +117,13 @@ const styles = {
         alignSelf: 'center',
         color: 'white',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginTop: 5,
         marginBottom: 10,
     },
     weatherText: {
         color: '#ccc',
+        fontFamily: 'Ubuntu-Regular',
         fontSize: 14,
     },
     drawerBottom: {
@@ -138,7 +139,7 @@ const styles = {
     },
     logoutButtonText: {
         color: '#ccc',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginLeft: 35,
     },
 };

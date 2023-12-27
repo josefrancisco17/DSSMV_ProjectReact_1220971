@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         color: 'white',
         marginVertical: 20,
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
     input: {
         color: 'white',

@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginBottom: 20,
         color: 'white',
     },
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     },
     switchLabel: {
         fontSize: 16,
+        fontFamily: 'Ubuntu-Regular',
         marginRight: 10,
         color: 'white',
     },
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 

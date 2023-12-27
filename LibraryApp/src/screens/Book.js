@@ -97,22 +97,25 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: 'white',
     },
     byStatement: {
         alignSelf: 'center',
         fontSize: 16,
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
     description: {
         fontSize: 16,
+        lineHeight: 25,
+        fontFamily: 'Ubuntu-Regular',
         color: 'white',
     },
     details: {
         fontSize: 14,
         marginVertical: 4,
+        fontFamily: 'Ubuntu-Regular',
         color: 'white',
     },
     bookImage: {
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
         textAlign: 'center',
     },

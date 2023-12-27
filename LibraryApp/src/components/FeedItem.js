@@ -57,14 +57,15 @@ const styles = StyleSheet.create({
     bookImage: {
         width: 110,
         height: 155,
-        marginRight: 10,
+        marginHorizontal: 10,
         borderRadius: 8,
     },
     libraryName: {
+        alignSelf: 'center',
         color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 10,
+        fontSize: 20,
+        fontFamily: 'Ubuntu-Bold',
+        marginBottom: 20,
     },
 });
 

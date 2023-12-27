@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: 'white',
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 
