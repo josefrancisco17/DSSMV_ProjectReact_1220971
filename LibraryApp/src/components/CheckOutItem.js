@@ -33,22 +33,25 @@ const styles = StyleSheet.create({
     titleText: {
         color: 'white',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         alignSelf: 'center',
     },
     libraryText: {
         color: 'white',
         fontSize: 16,
+        fontFamily: 'Ubuntu-Regular',
         alignSelf: 'center',
     },
     dueDateText: {
         color: 'white',
         fontSize: 14,
+        fontFamily: 'Ubuntu-Light',
         alignSelf: 'center',
     },
     activeText: {
         color: 'white',
         fontSize: 14,
+        fontFamily: 'Ubuntu-Light',
         alignSelf: 'center',
     },
 });

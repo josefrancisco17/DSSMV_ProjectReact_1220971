@@ -18,8 +18,15 @@ const CreateLibraryScreen = ({ navigation }) => {
         navigation.navigate('Admin');
     };
 
+    const handleReturn = async () => {
+        navigation.navigate('Admin');
+    };
+
     return (
         <View style={styles.container}>
+            <TouchableOpacity style={styles.returnButton} onPress={handleReturn}>
+                <Text style={styles.buttonText}>Return</Text>
+            </TouchableOpacity>
             <Text style={styles.title}>Library Name</Text>
             <TextInput
                 style={styles.input}
@@ -81,8 +88,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#1a1a1a',
     },
     title: {
-        color: '#ccc',
-        fontWeight: 'bold',
+        color: 'white',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
         marginVertical: 10,
     },
@@ -97,14 +104,23 @@ const styles = StyleSheet.create({
     submitButton: {
         backgroundColor: '#007bff',
         borderRadius: 10,
-        marginTop: 20,
-        padding: 15,
+        marginTop: 35,
+        padding: 20,
+        width: '55%',
     },
     buttonText: {
-        color: '#ccc',
+        color: 'white',
         textAlign: 'center',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
+    },
+    returnButton: {
+        position: 'absolute',
+        top: 10,
+        left: 20,
+        padding: 15,
+        borderRadius: 8,
+        backgroundColor: '#333',
     },
 });
 

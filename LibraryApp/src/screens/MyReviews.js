@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import React, { useState} from 'react';
+import {ActivityIndicator, FlatList, StyleSheet, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from "@react-navigation/native";
-import {getCheckOutsHistoryList, getMyReviewsList} from "../service/RequestsService";
+import { getMyReviewsList} from "../service/RequestsService";
 import ReviewItem from "../components/ReviewItem";
 
 const MyReviewsScreen = ({navigation}) => {
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         marginVertical: 30,
         color: 'white',
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 

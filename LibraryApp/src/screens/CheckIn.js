@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCheckOutsList, postCheckInBook } from '../service/RequestsService';
 import CheckOutItem from '../components/CheckOutItem';
-import { check } from 'react-native-permissions';
 
 const CheckInScreen = ({ navigation }) => {
     const [userName, setUserName] = useState('');
@@ -51,7 +50,7 @@ const CheckInScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Select a Book to Check In</Text>
+            <Text style={styles.title}>Select a Book</Text>
             <FlatList
                 style={styles.flatList}
                 data={checkedOutBooksList}
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: 'white',
         fontSize: 22,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
 });
 

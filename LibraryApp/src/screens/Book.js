@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 import { postCheckOutBook } from '../service/RequestsService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -97,22 +97,25 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: 'white',
     },
     byStatement: {
         alignSelf: 'center',
         fontSize: 16,
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
     },
     description: {
         fontSize: 16,
+        lineHeight: 25,
+        fontFamily: 'Ubuntu-Regular',
         color: 'white',
     },
     details: {
         fontSize: 14,
         marginVertical: 4,
+        fontFamily: 'Ubuntu-Regular',
         color: 'white',
     },
     bookImage: {
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         fontSize: 16,
         textAlign: 'center',
     },

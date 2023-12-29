@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, FlatList, StyleSheet, Text, View, RefreshControl} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FlatList, StyleSheet, Text, View, RefreshControl} from 'react-native';
 import {getLibrariesList} from "../service/RequestsService";
 import FeedItem from "../components/FeedItem";
 
@@ -45,7 +44,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#1a1a1a',
     },
     text: {
-        color: 'black'
+        color: 'black',
+        fontFamily: 'Ubuntu-Regular',
     },
 });
 

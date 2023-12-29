@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from "@react-navigation/native";
 import ReviewItem from "../components/ReviewItem";
 import {
-    getCheckOutsList,
-    getLibraryBooksList,
     getRecommendedCount,
     getReviewsList
 } from "../service/RequestsService";
@@ -96,12 +94,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     buttonText: {
-        color: '#ccc',
+        color: 'white',
         fontSize: 20,
-        fontWeight: "bold",
+        fontFamily: 'Ubuntu-Bold',
     },
     text: {
-        color: '#ccc',
+        color: 'white',
+        fontFamily: 'Ubuntu-Regular',
         marginBottom: 8,
     },
     recommendedCountText: {

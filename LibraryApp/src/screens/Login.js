@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import {TouchableOpacity, StyleSheet, Text, TextInput, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginBottom: 20,
         color: 'white',
     },
@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontFamily: 'Ubuntu-Bold',
     },
 })
 

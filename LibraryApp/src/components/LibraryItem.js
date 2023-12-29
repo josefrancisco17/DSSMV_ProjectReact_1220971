@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#ccc',
+        fontFamily: 'Ubuntu-Bold',
+        color: 'white',
         textAlign: 'center',
     }
 });

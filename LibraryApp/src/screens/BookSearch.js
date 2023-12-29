@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
 import {getLibraryBooksList} from "../service/RequestsService";
 import { useFocusEffect } from '@react-navigation/native';
 import BookItem from '../components/BookItem.js';
-import {SearchBar} from "react-native-screens";
 
 const BookSearchScreen = ({ navigation, route }) => {
     const { library } = route.params;
@@ -80,6 +79,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: '#ccc',
         fontSize: 16,
+        fontFamily: 'Ubuntu-Regular',
         borderColor: '#ccc',
         textAlign: 'center',
     },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         color: '#ccc',
         textAlign: 'center',
     },

@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 28,
-        fontWeight: 'bold',
+        fontFamily: 'Ubuntu-Bold',
         marginTop: 50,
         marginBottom: 85,
-        color: '#ccc',
+        color: 'white',
         alignSelf: 'center',
     },
     text: {
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#ccc',
+        fontFamily: 'Ubuntu-Bold',
+        color: 'white',
         textAlign: 'center',
     },
     button: {
