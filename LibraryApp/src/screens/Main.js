@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from "react-native";
+import {ActivityIndicator, StyleSheet, Text, View, StatusBar} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Geolocation from "@react-native-community/geolocation";
 
@@ -26,6 +26,7 @@ const MainScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor={'#1a1a1a'}/>
             <Text style={styles.text}>Loading</Text>
             <ActivityIndicator size="large" color="white" style={styles.activityIndicator} />
         </View>
