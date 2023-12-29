@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
 import {getLibraryBooksList} from "../service/RequestsService";
 import { useFocusEffect } from '@react-navigation/native';
 import BookItem from '../components/BookItem.js';
-import {SearchBar} from "react-native-screens";
 
 const BookSearchScreen = ({ navigation, route }) => {
     const { library } = route.params;

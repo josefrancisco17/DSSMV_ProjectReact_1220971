@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import FeedScreen from "../screens/Feed";
 import CheckOutScreen from '../screens/LibrarySearch.js';

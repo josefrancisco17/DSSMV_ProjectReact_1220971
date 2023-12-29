@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
 import { postCheckOutBook } from '../service/RequestsService';
 import AsyncStorage from '@react-native-async-storage/async-storage';

@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from '@react-navigation/native';
 import {getCheckOutsHistoryList, getCheckOutsList, getReviewsList} from "../service/RequestsService";

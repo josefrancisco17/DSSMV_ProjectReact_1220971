@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {TextInput, View, FlatList, Alert, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {TextInput, View, FlatList, StyleSheet} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import {getLibrariesList} from '../service/RequestsService';
 import LibraryItem from '../components/LibraryItem';

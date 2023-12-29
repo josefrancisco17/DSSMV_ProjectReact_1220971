@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Switch, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Switch, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { postReviewBook, updateReviewBook } from "../service/RequestsService";
 import { useFocusEffect } from "@react-navigation/native";

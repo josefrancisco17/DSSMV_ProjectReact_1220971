@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect } from "@react-navigation/native";
 import ReviewItem from "../components/ReviewItem";
 import {
-    getCheckOutsList,
-    getLibraryBooksList,
     getRecommendedCount,
     getReviewsList
 } from "../service/RequestsService";
