@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import {ActivityIndicator, StyleSheet, Text, View, StatusBar} from "react-native";
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Geolocation from "@react-native-community/geolocation";
 
@@ -20,6 +21,7 @@ const MainScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
+        changeNavigationBarColor('#1a1a1a')
         checkLogIn()
         getPermissions()
     }, []);
