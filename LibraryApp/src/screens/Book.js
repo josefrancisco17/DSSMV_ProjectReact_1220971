@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
+import {ScrollView, TouchableOpacity, View, Text, StyleSheet, Image, Alert} from 'react-native';
 import { postCheckOutBook } from '../service/RequestsService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -12,6 +12,7 @@ const BookScreen = ({ navigation, route }) => {
         try {
             await postCheckOutBook(libraryId, book.isbn, userName);
         } catch (error) {
+            Alert.alert("Book have already been CheckedOut or Library is closed")
             console.log("Book have already been CheckedOut or Library is closed")
         }
         navigation.navigate('Home');
