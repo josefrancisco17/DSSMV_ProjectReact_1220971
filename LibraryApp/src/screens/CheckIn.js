@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import {Alert, FlatList, StyleSheet, Text, View} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCheckOutsList, postCheckInBook } from '../service/RequestsService';
@@ -36,6 +36,7 @@ const CheckInScreen = ({ navigation }) => {
         try {
             await postCheckInBook(libraryId, checkOut.book.isbn, userName);
         } catch (error) {
+            Alert.alert("Can't check in because the library is closed")
             console.log("Can't check in because the library is closed");
         }
         fetchData();
